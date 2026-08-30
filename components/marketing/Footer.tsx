@@ -90,10 +90,10 @@ export function Footer() {
         viewport={{ once: true, margin: "-50px" }}
         variants={containerVariants}
       >
-        <div className="flex flex-col lg:flex-row gap-4 h-full">
+        <div className="flex flex-col lg:flex-row items-stretch gap-4">
           {/* Left Brand & Mission Card */}
           <motion.div
-            className="relative w-full lg:w-1/3 min-h-[320px] lg:min-h-[560px] overflow-hidden rounded-2xl bg-[#0c0c0c] border border-[#262626] flex flex-col justify-between p-8 sm:p-10 shadow-card"
+            className="relative w-full lg:w-1/3 overflow-hidden rounded-2xl bg-[#0c0c0c] border border-[#262626] flex flex-col justify-between p-6 sm:p-8 shadow-card"
             variants={itemVariants}
           >
             {/* SVG Noise & Grid Overlay */}
@@ -113,8 +113,8 @@ export function Footer() {
               <rect width="100%" height="100%" filter="url(#noiseFilterSatQuery)" opacity="0.15" />
             </svg>
 
-            {/* Top Logo */}
-            <div className="relative z-10 space-y-2">
+            {/* Top Brand Info */}
+            <div className="relative z-10 space-y-3">
               <Link href="/" className="flex items-center gap-2.5 group">
                 <div className="w-6 h-6 rounded-lg border border-[#444444] bg-[#141414] flex items-center justify-center group-hover:border-white transition-colors">
                   <div className="w-2.5 h-2.5 rounded-full bg-white" />
@@ -128,15 +128,15 @@ export function Footer() {
               </p>
             </div>
 
-            {/* Bottom Content */}
-            <div className="relative z-10 space-y-5">
-              <h3 className="text-base sm:text-lg font-medium text-white leading-snug">
+            {/* Middle & Bottom Content */}
+            <div className="relative z-10 space-y-4 pt-6">
+              <h3 className="text-sm sm:text-base font-medium text-white leading-snug">
                 {FOOTER_TITLE}
               </h3>
 
-              <SocialCloud className="text-white/80 gap-3" />
+              <SocialCloud className="text-white/80 gap-2.5" />
 
-              <div className="space-y-1 pt-2 border-t border-[#1f1f1f] text-[11px] font-mono text-[#737373]">
+              <div className="space-y-1 pt-3 border-t border-[#1f1f1f] text-[11px] font-mono text-[#737373]">
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80" />
                   <span>Copernicus STAC Pipelines Operational</span>
@@ -150,17 +150,17 @@ export function Footer() {
 
           {/* Right Navigation & Research Digest Card */}
           <motion.div
-            className="w-full lg:w-2/3 rounded-2xl bg-[#090909] border border-[#262626] p-8 sm:p-10 flex flex-col justify-between min-h-[460px] lg:min-h-[560px]"
+            className="w-full lg:w-2/3 rounded-2xl bg-[#090909] border border-[#262626] p-6 sm:p-8 flex flex-col justify-between space-y-6"
             variants={itemVariants}
           >
             {/* Top Categories Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
               {footerLinks.map((section, idx) => (
-                <div key={idx} className="flex flex-col space-y-4">
+                <div key={idx} className="flex flex-col space-y-3">
                   <h4 className="text-xs font-mono uppercase tracking-wider text-[#737373] font-semibold">
                     {section.title}
                   </h4>
-                  <ul className="flex flex-col space-y-2.5 text-xs text-[#a3a3a3]">
+                  <ul className="flex flex-col space-y-2 text-xs text-[#a3a3a3]">
                     {section.links.map((link, linkIdx) => (
                       <li key={linkIdx}>
                         {link.href.startsWith("http") ? (
@@ -188,42 +188,42 @@ export function Footer() {
             </div>
 
             {/* Bottom Research Digest / Newsletter */}
-            <div className="space-y-3 mt-10 pt-8 border-t border-[#1a1a1a]">
-              <div className="space-y-1">
+            <div className="space-y-2.5 pt-5 border-t border-[#1a1a1a]">
+              <div className="space-y-0.5">
                 <h4 className="text-xs font-mono uppercase tracking-wider text-white font-semibold">
                   Earth Observation Research Digest
                 </h4>
-                <p className="text-xs text-[#737373]">
+                <p className="text-[11px] text-[#737373]">
                   Receive updates on new remote-sensing model checkpoints, STAC catalog integrations, and release notes.
                 </p>
               </div>
 
               {subscribed ? (
-                <div className="flex items-center gap-2 p-3 rounded-xl bg-[#141414] border border-[#2a2a2a] text-xs text-white">
+                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-[#141414] border border-[#2a2a2a] text-xs text-white">
                   <Check className="w-4 h-4 text-white" />
                   <span>Subscribed to SatQuery research updates.</span>
                 </div>
               ) : (
-                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2.5 max-w-lg w-full">
+                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2 max-w-lg w-full">
                   <input
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="analyst@geospatial-lab.org"
-                    className="flex-1 rounded-xl px-4 py-2.5 text-xs bg-[#121212] text-white border border-[#262626] focus:border-[#4d4d4d] focus:outline-none transition-colors placeholder-[#525252]"
+                    className="flex-1 rounded-xl px-3.5 py-2 text-xs bg-[#121212] text-white border border-[#262626] focus:border-[#4d4d4d] focus:outline-none transition-colors placeholder-[#525252]"
                   />
                   <button
                     type="submit"
-                    className="rounded-xl bg-white hover:bg-[#e5e5e5] text-black px-5 py-2.5 text-xs font-semibold tracking-wide transition-all shadow-subtle flex items-center justify-center gap-1.5 shrink-0"
+                    className="rounded-xl bg-white hover:bg-[#e5e5e5] text-black px-4 py-2 text-xs font-semibold tracking-wide transition-all shadow-subtle flex items-center justify-center gap-1.5 shrink-0"
                   >
                     <span>Subscribe</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-3 h-3" />
                   </button>
                 </form>
               )}
 
-              <div className="flex items-center justify-between text-[11px] text-[#525252] font-mono pt-1">
+              <div className="flex items-center justify-between text-[10px] text-[#525252] font-mono pt-0.5">
                 <span>WGS84 • UTM EPSG:32643</span>
                 <span>Deterministic Geospatial Engine</span>
               </div>
