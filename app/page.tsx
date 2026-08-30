@@ -10,6 +10,7 @@ import { WorkflowTrace } from "@/components/marketing/WorkflowTrace";
 import { ModelsOverview } from "@/components/marketing/ModelsOverview";
 import { TrustSection } from "@/components/marketing/TrustSection";
 import { CTASection } from "@/components/marketing/CTASection";
+import FAQLuxury from "@/components/ContentBlocks/FAQ/tsx/FAQLuxury";
 import { Footer } from "@/components/marketing/Footer";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 
@@ -29,6 +30,7 @@ export default function LandingPage() {
           <ModelsOverview />
           <TrustSection />
           <CTASection />
+          <FAQLuxury />
         </main>
         <Footer />
       </div>
