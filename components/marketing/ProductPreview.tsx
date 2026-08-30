@@ -24,7 +24,9 @@ export function ProductPreview() {
   const [activeChatIndex, setActiveChatIndex] = useState(0);
   const [evidenceModalData, setEvidenceModalData] = useState<any | null>(null);
 
-  const previewChat = INITIAL_CONVERSATIONS[activeChatIndex];
+  // Landing page preview showcases rich demo scenarios with full analyses
+  const demoScenarios = INITIAL_CONVERSATIONS.filter((c) => c.messages && c.messages.length > 0);
+  const previewChat = demoScenarios[activeChatIndex] || demoScenarios[0];
 
   return (
     <section id="preview" className="py-24 bg-black border-t border-[#1f1f1f] relative">
@@ -75,7 +77,7 @@ export function ProductPreview() {
               <span className="px-2 text-[10px] font-mono uppercase text-[#525252]">
                 DEMO SCENARIOS
               </span>
-              {INITIAL_CONVERSATIONS.slice(0, 3).map((conv, idx) => (
+              {demoScenarios.slice(0, 3).map((conv, idx) => (
                 <button
                   key={conv.id}
                   onClick={() => setActiveChatIndex(idx)}

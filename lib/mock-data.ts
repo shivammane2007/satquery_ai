@@ -3,6 +3,15 @@ import { SATELLITE_IMAGES } from "./satellite-assets";
 
 export const INITIAL_CONVERSATIONS: Conversation[] = [
   {
+    id: "chat-new",
+    title: "New Satellite Query",
+    createdAt: "2026-08-30T10:18:00Z",
+    updatedAt: "2026-08-30T10:18:00Z",
+    temporary: false,
+    category: "Today",
+    messages: [],
+  },
+  {
     id: "chat-001",
     title: "Pune Urban Expansion",
     createdAt: "2026-08-30T10:14:00Z",

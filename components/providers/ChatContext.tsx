@@ -34,7 +34,7 @@ const ChatContext = createContext<ChatContextType | undefined>(undefined);
 
 export function ChatProvider({ children }: { children: React.ReactNode }) {
   const [conversations, setConversations] = useState<Conversation[]>(INITIAL_CONVERSATIONS);
-  const [activeConversationId, setActiveConversationId] = useState<string>("chat-001");
+  const [activeConversationId, setActiveConversationId] = useState<string>("chat-new");
   const [isTemporary, setIsTemporary] = useState<boolean>(false);
   const [temporaryChat, setTemporaryChat] = useState<Conversation | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);

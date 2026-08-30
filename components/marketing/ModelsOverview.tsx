@@ -32,7 +32,7 @@ export function ModelsOverview() {
 
         {/* Model Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {MODEL_STACK.map((model) => (
+          {MODEL_STACK.slice(0, 2).map((model) => (
             <div
               key={model.id}
               className="p-6 sm:p-8 rounded-2xl bg-[#0c0c0c] hover:bg-[#121212] border border-[#212121] hover:border-[#333333] transition-all flex flex-col justify-between space-y-6"
