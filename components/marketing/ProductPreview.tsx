@@ -18,6 +18,7 @@ import {
   Layers,
   Sparkles,
 } from "lucide-react";
+import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 
 export function ProductPreview() {
   const [activeChatIndex, setActiveChatIndex] = useState(0);
@@ -47,10 +48,9 @@ export function ProductPreview() {
 
           <Link
             href="/app"
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#171717] hover:bg-[#212121] text-white border border-[#333333] rounded-xl text-xs font-semibold tracking-wide transition-colors shrink-0 self-start sm:self-auto"
+            className="inline-flex items-center shrink-0 self-start sm:self-auto"
           >
-            <span>Launch Live App</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <LiquidMetalButton label="Launch Live App" />
           </Link>
         </div>
 
