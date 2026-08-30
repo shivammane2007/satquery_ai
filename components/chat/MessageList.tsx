@@ -7,6 +7,7 @@ import { AssistantMessage } from "./AssistantMessage";
 import { EmptyState } from "./EmptyState";
 import { Attachment } from "@/lib/types";
 import { Sparkles, ShieldAlert } from "lucide-react";
+import { TypingIndicatorChat } from "@/components/Navigation&Structures/ChatUi/tsx/TypingIndicatorChat";
 
 interface MessageListProps {
   onSelectPrompt: (prompt: string, attachments?: Attachment[]) => void;
@@ -64,25 +65,12 @@ export function MessageList({ onSelectPrompt }: MessageListProps) {
 
       {/* Streaming Thinking State */}
       {isStreaming && (
-        <div className="flex items-start gap-3.5 max-w-3xl w-full animate-in fade-in duration-150">
-          <div className="w-8 h-8 rounded-xl bg-[#141414] border border-[#2e2e2e] flex items-center justify-center shrink-0 mt-0.5">
-            <div className="w-3.5 h-3.5 rounded-full border border-white/40 flex items-center justify-center">
-              <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            </div>
+        <div className="flex flex-col items-start gap-2 max-w-3xl w-full animate-in fade-in duration-150">
+          <div className="flex items-center gap-2 px-1 text-[11px] font-mono text-[#737373]">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            <span>SatQuery Agent • Synthesizing EO inferences...</span>
           </div>
-          <div className="p-4 rounded-2xl bg-[#121212] border border-[#262626] space-y-2">
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold text-white">SatQuery Agent</span>
-              <span className="text-[10px] text-[#737373] font-mono animate-pulse">
-                Routing Specialist Models...
-              </span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 rounded-full bg-white/60 animate-bounce" style={{ animationDelay: "0ms" }} />
-              <div className="w-1.5 h-1.5 rounded-full bg-white/60 animate-bounce" style={{ animationDelay: "150ms" }} />
-              <div className="w-1.5 h-1.5 rounded-full bg-white/60 animate-bounce" style={{ animationDelay: "300ms" }} />
-            </div>
-          </div>
+          <TypingIndicatorChat type="bounce" align="left" color="#ffffff" />
         </div>
       )}
 
