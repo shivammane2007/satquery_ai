@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Compass, Layers, Radio, Globe, Shield, Terminal } from "lucide-react";
 import { SATELLITE_IMAGES } from "@/lib/satellite-assets";
+import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 
 export function Hero() {
   const [activeSensorBadge, setActiveSensorBadge] = useState<"optical" | "sar" | "dem">("optical");
@@ -64,11 +65,8 @@ export function Hero() {
               <ArrowRight className="w-4 h-4" />
             </Link>
 
-            <Link
-              href="#preview"
-              className="inline-flex items-center gap-2 px-5 py-3.5 bg-[#141414] hover:bg-[#1f1f1f] text-[#d4d4d4] hover:text-white border border-[#2e2e2e] rounded-xl text-sm font-medium transition-colors"
-            >
-              <span>Explore Platform</span>
+            <Link href="#preview" className="inline-flex items-center">
+              <LiquidMetalButton label="Explore Platform" />
             </Link>
           </div>
         </div>

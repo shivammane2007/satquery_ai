@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRight, Globe, Compass } from "lucide-react";
+import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 
 export function CTASection() {
   return (
@@ -31,11 +32,8 @@ export function CTASection() {
             <ArrowRight className="w-4 h-4" />
           </Link>
 
-          <Link
-            href="/models"
-            className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#141414] hover:bg-[#1c1c1c] text-[#d4d4d4] hover:text-white border border-[#2e2e2e] rounded-xl text-sm font-medium transition-colors"
-          >
-            <span>Explore Models</span>
+          <Link href="/models" className="inline-flex items-center">
+            <LiquidMetalButton label="Explore Models" />
           </Link>
         </div>
       </div>
