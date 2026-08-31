@@ -1,6 +1,19 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ChatProvider } from "@/components/providers/ChatContext";
+import { Prata, Hanken_Grotesk } from "next/font/google";
+
+const prata = Prata({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
+});
+
+const hankenGrotesk = Hanken_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "SatQuery AI — Remote-Sensing Intelligence",
@@ -20,14 +33,16 @@ export const metadata: Metadata = {
   ],
 };
 
+import { ChatProvider } from "@/components/providers/ChatContext";
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="bg-black text-white antialiased selection:bg-[#333333] selection:text-white">
+    <html lang="en" className={`dark ${prata.variable} ${hankenGrotesk.variable}`}>
+      <body className="bg-black text-white antialiased selection:bg-[#333333] selection:text-white font-sans">
         <ChatProvider>{children}</ChatProvider>
       </body>
     </html>

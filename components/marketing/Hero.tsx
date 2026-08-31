@@ -1,167 +1,303 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
-import { ArrowRight, Compass, Layers, Radio, Globe, Shield, Terminal } from "lucide-react";
-import { SATELLITE_IMAGES } from "@/lib/satellite-assets";
-import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
+import React, { useState, useEffect, useRef } from "react";
+
+interface SensorModeData {
+  id: string;
+  label: string;
+  name: string;
+  video: string;
+  still: string;
+  cutout: string;
+  badge: string;
+  description: string;
+  spinClass: string;
+  glowClass: string;
+}
+
+const MODES: Record<string, SensorModeData> = {
+  earth: {
+    id: "earth",
+    label: "SENTINEL-2",
+    name: "EARTH OBSERVATION",
+    video:
+      "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260827_202422_3ffb4889-c520-432d-8458-038009eb40df.mp4",
+    still:
+      "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260827_202133_508c64b8-a31e-4290-bdfc-1187df70e0a6.png",
+    cutout:
+      "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260827_202005_3346cc4d-ec3b-44ab-825c-b18e49f5021a.png",
+    badge: "MULTISPECTRAL • 10M GSD",
+    description:
+      "Ask questions about Earth observation data, compare imagery across time, inspect regions, and get evidence-grounded answers through an agentic remote-sensing workflow.",
+    spinClass: "animate-planet-earth",
+    glowClass: "drop-shadow-[0_0_24px_rgba(100,180,255,0.45)]",
+  },
+  venus: {
+    id: "venus",
+    label: "SENTINEL-1 SAR",
+    name: "SYNTHETIC APERTURE RADAR",
+    video:
+      "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260827_202422_b211cd74-013b-4dd3-bfd0-64491d8696fa.mp4",
+    still:
+      "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260827_202133_cf55d1d8-7b59-4a64-80da-d72052ae974e.png",
+    cutout:
+      "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260827_202012_640b239a-d08a-4200-adb2-741bbe129ac8.png",
+    badge: "RADAR BACKSCATTER • CLOUD PENETRATION",
+    description:
+      "Penetrate cloud cover and dense atmospheric smoke using C-band radar backscatter (VV/VH) fused with coregistered baseline optical rasters.",
+    spinClass: "animate-planet-venus",
+    glowClass: "drop-shadow-[0_0_24px_rgba(230,200,140,0.4)]",
+  },
+  mars: {
+    id: "mars",
+    label: "TERRAIN DEM",
+    name: "TOPOGRAPHIC ELEVATION",
+    video:
+      "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260827_202422_51eae59a-2459-4c84-907c-cc5edfe5fea7.mp4",
+    still:
+      "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260827_202133_0ba6de7c-285d-43dc-b7ab-8c54c73707cb.png",
+    cutout:
+      "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260827_202018_3d559490-f613-4ed7-a3bb-3b7e9fc90fb8.png",
+    badge: "COPERNICUS DEM • ELEVATION PROFILE",
+    description:
+      "Quantify geomorphology, volumetric soil displacement, slope gradient risks, and hyper-resolution terrain changes with specialized foundation models.",
+    spinClass: "animate-planet-mars",
+    glowClass: "drop-shadow-[0_0_24px_rgba(240,110,60,0.45)]",
+  },
+};
+
+const ORDER = ["earth", "venus", "mars"];
 
 export function Hero() {
-  const [activeSensorBadge, setActiveSensorBadge] = useState<"optical" | "sar" | "dem">("optical");
+  const [currentMode, setCurrentMode] = useState<string>("earth");
+  const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
+
+  const rest = ORDER.filter((id) => id !== currentMode);
+  const leftId = rest[0];
+  const rightId = rest[1];
+
+  const handleWarm = (key: string) => {
+    const video = videoRefs.current[key];
+    if (video && !video.src && video.dataset.src) {
+      video.preload = "auto";
+      video.src = video.dataset.src;
+      video.load();
+    }
+  };
+
+  const switchMode = (next: string) => {
+    if (!MODES[next] || next === currentMode) return;
+    setCurrentMode(next);
+
+    ORDER.forEach((key) => {
+      const v = videoRefs.current[key];
+      if (!v) return;
+      if (key === next) {
+        if (!v.src && v.dataset.src) {
+          v.src = v.dataset.src;
+        }
+        v.play().catch(() => {});
+      } else {
+        v.pause();
+      }
+    });
+  };
+
+  useEffect(() => {
+    const activeVideo = videoRefs.current["earth"];
+    if (activeVideo) {
+      activeVideo.play().catch(() => {});
+    }
+
+    const timer = setTimeout(() => {
+      ORDER.forEach((key) => handleWarm(key));
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const activeData = MODES[currentMode];
 
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center pt-32 pb-20 overflow-hidden bg-black">
-      {/* Background Geo-Grid & Radial Radar Texture */}
-      <div className="absolute inset-0 bg-geo-grid pointer-events-none opacity-40" />
-      <div className="absolute inset-0 bg-radar-gradient pointer-events-none opacity-80" />
+    <section className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#04101f] text-white select-none">
+      {/* Dynamic Physics Style Block for Celestial Rotation */}
+      <style jsx global>{`
+        @keyframes planet-axial-prograde {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        @keyframes planet-axial-retrograde {
+          from {
+            transform: rotate(360deg);
+          }
+          to {
+            transform: rotate(0deg);
+          }
+        }
+        @keyframes celestial-orbit-l {
+          0%, 100% {
+            transform: translate3d(0, 0px, 0);
+          }
+          50% {
+            transform: translate3d(-3px, -10px, 0);
+          }
+        }
+        @keyframes celestial-orbit-r {
+          0%, 100% {
+            transform: translate3d(0, 0px, 0);
+          }
+          50% {
+            transform: translate3d(3px, 10px, 0);
+          }
+        }
+        .animate-planet-earth {
+          animation: planet-axial-prograde 36s linear infinite;
+        }
+        .animate-planet-venus {
+          animation: planet-axial-retrograde 75s linear infinite;
+        }
+        .animate-planet-mars {
+          animation: planet-axial-prograde 48s linear infinite;
+        }
+        .orbit-float-left {
+          animation: celestial-orbit-l 8s ease-in-out infinite;
+        }
+        .orbit-float-right {
+          animation: celestial-orbit-r 9.5s ease-in-out infinite;
+        }
+      `}</style>
 
-      {/* Topographic Contour Lines SVG Background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-25">
-        <svg className="w-full h-full" viewBox="0 0 1440 900" fill="none">
-          <path
-            d="M -100 400 C 300 300 600 600 1540 380"
-            stroke="rgba(255,255,255,0.15)"
-            strokeWidth="1"
+      {/* 1. Cinematic Planet Video Sky Background */}
+      <div
+        className="absolute inset-0 z-0 bg-cover bg-center transition-all duration-700 pointer-events-none"
+        style={{ backgroundImage: `url('${activeData.still}')` }}
+      >
+        {ORDER.map((key) => (
+          <video
+            key={key}
+            ref={(el) => {
+              videoRefs.current[key] = el;
+            }}
+            data-planet={key}
+            data-src={MODES[key].video}
+            src={key === "earth" ? MODES[key].video : undefined}
+            poster={MODES[key].still}
+            autoPlay={key === "earth"}
+            muted
+            loop
+            playsInline
+            preload={key === "earth" ? "auto" : "none"}
+            aria-hidden="true"
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+              currentMode === key ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
           />
+        ))}
+        {/* Topographic and Vignette Ambient Overlay */}
+        <div className="absolute inset-0 bg-radial-[circle_at_center,transparent_25%,rgba(4,16,31,0.75)_100%] pointer-events-none" />
+      </div>
+
+      {/* 2. Hero Content Container (Shifted Higher Up) */}
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 pt-6 pb-4 -mt-24 sm:-mt-36 md:-mt-44 flex flex-col items-center text-center space-y-4 sm:space-y-5">
+        {/* Eyebrow */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-xs font-mono tracking-widest text-[#79dce8] uppercase animate-in fade-in duration-300">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#79dce8] animate-pulse" />
+          <span>REMOTE-SENSING INTELLIGENCE</span>
+        </div>
+
+        {/* Serif Main Brand Headline: SATQUERY AI */}
+        <div className="space-y-2">
+          <h1
+            className="text-6xl sm:text-8xl md:text-9xl font-normal tracking-wide text-white leading-none drop-shadow-2xl font-serif"
+            style={{ fontFamily: "var(--font-serif, 'Prata', serif)" }}
+          >
+            SATQUERY AI
+          </h1>
+          <p className="text-xl sm:text-2xl md:text-3xl font-light text-white/90 tracking-tight">
+            Talk to satellite imagery.
+          </p>
+        </div>
+
+        {/* Cyan Accent Bar */}
+        <div className="w-24 sm:w-28 h-1 sm:h-1.5 rounded-full bg-[#79dce8] shadow-[0_0_16px_rgba(121,220,232,0.6)]" />
+
+
+
+
+      </div>
+
+      {/* 4. Left Bottom Corner Planet Button */}
+      <button
+        type="button"
+        onClick={() => switchMode(leftId)}
+        onPointerEnter={() => handleWarm(leftId)}
+        onFocus={() => handleWarm(leftId)}
+        aria-label={`Switch to ${MODES[leftId].name}`}
+        className="orbit-float-left group absolute bottom-6 left-6 sm:bottom-10 sm:left-10 md:bottom-12 md:left-12 flex items-center cursor-pointer transition-transform duration-300 hover:scale-115 active:scale-95 z-30"
+      >
+        <div
+          className={`relative w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 shrink-0 rounded-full transition-all duration-500 ${MODES[leftId].glowClass}`}
+        >
+          {ORDER.map((p) => (
+            <img
+              key={p}
+              src={MODES[p].cutout}
+              alt=""
+              className={`absolute inset-0 w-full h-full object-contain rounded-full transition-opacity duration-300 will-change-transform ${
+                MODES[p].spinClass
+              } ${leftId === p ? "opacity-100 block" : "opacity-0 hidden"}`}
+            />
+          ))}
+        </div>
+      </button>
+
+      {/* 5. Right Bottom Corner Planet Button */}
+      <button
+        type="button"
+        onClick={() => switchMode(rightId)}
+        onPointerEnter={() => handleWarm(rightId)}
+        onFocus={() => handleWarm(rightId)}
+        aria-label={`Switch to ${MODES[rightId].name}`}
+        className="orbit-float-right group absolute bottom-6 right-6 sm:bottom-10 sm:right-10 md:bottom-12 md:right-12 flex items-center cursor-pointer transition-transform duration-300 hover:scale-115 active:scale-95 z-30"
+      >
+        <div
+          className={`relative w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 shrink-0 rounded-full transition-all duration-500 ${MODES[rightId].glowClass}`}
+        >
+          {ORDER.map((p) => (
+            <img
+              key={p}
+              src={MODES[p].cutout}
+              alt=""
+              className={`absolute inset-0 w-full h-full object-contain rounded-full transition-opacity duration-300 will-change-transform ${
+                MODES[p].spinClass
+              } ${rightId === p ? "opacity-100 block" : "opacity-0 hidden"}`}
+            />
+          ))}
+        </div>
+      </button>
+
+      {/* 6. Center Bottom Scroll Indicator */}
+      <a
+        href="#preview"
+        aria-label="Scroll to product experience"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 w-12 h-12 rounded-full bg-[#181e2a]/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:border-[#79dce8] transition-all hover:scale-110"
+      >
+        <svg viewBox="0 0 26 33" fill="none" className="w-4 h-5" aria-hidden="true">
           <path
-            d="M -100 460 C 320 360 620 660 1540 440"
-            stroke="rgba(255,255,255,0.1)"
-            strokeWidth="1"
-          />
-          <path
-            d="M -100 520 C 340 420 640 720 1540 500"
-            stroke="rgba(255,255,255,0.06)"
-            strokeWidth="1"
+            d="M13 1.5 V31.5 M1.9 20.4 L13 31.5 L24.1 20.4"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="square"
+            strokeLinejoin="miter"
           />
         </svg>
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* Text Container */}
-        <div className="max-w-3xl space-y-6">
-          {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#141414] border border-[#2e2e2e] text-xs font-mono text-[#a3a3a3] tracking-widest uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            <span>REMOTE-SENSING INTELLIGENCE</span>
-          </div>
-
-          {/* Headline */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[1.08]">
-            Talk to satellite imagery.
-          </h1>
-
-          {/* Supporting Copy */}
-          <p className="text-base sm:text-lg text-[#888888] font-normal leading-relaxed max-w-2xl">
-            Ask questions about Earth observation data, compare imagery across time, inspect regions, and get evidence-grounded answers through an agentic remote-sensing workflow.
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <Link
-              href="/app"
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-white hover:bg-[#e5e5e5] text-black rounded-xl text-sm font-semibold tracking-wide transition-all shadow-card hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <span>Try SatQuery AI</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-
-            <Link href="#preview" className="inline-flex items-center">
-              <LiquidMetalButton label="Explore Platform" />
-            </Link>
-          </div>
-        </div>
-
-        {/* Sophisticated Satellite Visualization Card */}
-        <div className="relative w-full rounded-2xl border border-[#262626] bg-[#0c0c0c] p-2 sm:p-4 shadow-card overflow-hidden">
-          {/* Top Bar with Geospatial Telemetry */}
-          <div className="flex flex-wrap items-center justify-between gap-3 px-3 py-2 border-b border-[#1c1c1c] text-xs font-mono text-[#737373]">
-            <div className="flex items-center gap-3">
-              <span className="flex items-center gap-1.5 text-white">
-                <Globe className="w-3.5 h-3.5 text-[#888888]" />
-                <span>COPERNICUS STAC PIPELINE</span>
-              </span>
-              <span>•</span>
-              <span>ORBIT TRACK: DESCENDING 43N</span>
-              <span className="hidden sm:inline">•</span>
-              <span className="hidden sm:inline">GSD: 10m / 20m</span>
-            </div>
-
-            <div className="flex items-center gap-1.5 p-1 rounded-lg bg-[#141414] border border-[#212121]">
-              <button
-                type="button"
-                onClick={() => setActiveSensorBadge("optical")}
-                className={`px-3 py-1 rounded-md text-[11px] font-mono transition-all select-none ${
-                  activeSensorBadge === "optical"
-                    ? "bg-[#262626] text-white font-medium shadow-subtle border border-[#383838]"
-                    : "text-[#737373] hover:text-white border border-transparent"
-                }`}
-              >
-                Sentinel-2
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveSensorBadge("sar")}
-                className={`px-3 py-1 rounded-md text-[11px] font-mono transition-all select-none ${
-                  activeSensorBadge === "sar"
-                    ? "bg-[#262626] text-white font-medium shadow-subtle border border-[#383838]"
-                    : "text-[#737373] hover:text-white border border-transparent"
-                }`}
-              >
-                Sentinel-1 SAR
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveSensorBadge("dem")}
-                className={`px-3 py-1 rounded-md text-[11px] font-mono transition-all select-none ${
-                  activeSensorBadge === "dem"
-                    ? "bg-[#262626] text-white font-medium shadow-subtle border border-[#383838]"
-                    : "text-[#737373] hover:text-white border border-transparent"
-                }`}
-              >
-                Copernicus DEM
-              </button>
-            </div>
-          </div>
-
-          {/* Hero Geospatial Screen with Fixed Height & Aspect */}
-          <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] min-h-[280px] sm:min-h-[420px] bg-[#050505] rounded-xl overflow-hidden mt-3 border border-[#1f1f1f]">
-            <img
-              src={
-                activeSensorBadge === "optical"
-                  ? SATELLITE_IMAGES.puneAfter
-                  : activeSensorBadge === "sar"
-                  ? SATELLITE_IMAGES.sarRadar
-                  : SATELLITE_IMAGES.heroSatelliteGrid
-              }
-              alt="Satellite Earth Observation Scene"
-              className="absolute inset-0 w-full h-full object-cover select-none transition-opacity duration-200"
-            />
-
-            {/* Target Area of Interest (AOI) Reticle Overlay */}
-            <div className="absolute inset-x-8 inset-y-8 sm:inset-x-20 sm:inset-y-12 border border-white/20 rounded-lg pointer-events-none flex flex-col justify-between p-3">
-              <div className="flex items-center justify-between text-[10px] font-mono text-white/70">
-                <span>[ 18°31&apos;48&quot;N, 73°51&apos;18&quot;E ]</span>
-                <span>AOI_04_PUNE_NORTH</span>
-              </div>
-              <div className="flex items-center justify-between text-[10px] font-mono text-white/70">
-                <span>CRS: EPSG:32643</span>
-                <span>SPECTRAL BANDS: B02, B03, B04, B08</span>
-              </div>
-            </div>
-
-            {/* Live Interactive Floating Tag */}
-            <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 p-3 rounded-xl bg-black/90 border border-white/20 backdrop-blur-md space-y-1 max-w-xs sm:max-w-sm">
-              <div className="flex items-center gap-1.5 text-white text-xs font-semibold">
-                <Compass className="w-3.5 h-3.5" />
-                <span>Agentic Spatial Grounding</span>
-              </div>
-              <p className="text-[11px] text-[#a3a3a3] leading-relaxed">
-                Natural-language questions are routed to specialist models, coregistered across time, and grounded in explicit pixel coordinates.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      </a>
     </section>
   );
 }
+
+export default Hero;
