@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import { Layers, Terminal, Cpu, CheckCircle2, XCircle, ArrowRight } from "lucide-react";
+import BorderGlow from "@/components/ui/BorderGlow";
 
 export function ProblemSolution() {
   return (
@@ -21,7 +24,15 @@ export function ProblemSolution() {
         {/* Comparison Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Traditional GIS Workflow */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-[#141414] border border-[#333333] space-y-6 shadow-card">
+          <BorderGlow
+            className="p-6 sm:p-8 rounded-2xl bg-[#141414] border border-[#333333] space-y-6 shadow-card"
+            borderRadius={16}
+            glowColor="0 0 100"
+            colors={["#ffffff", "#ffffff", "#ffffff"]}
+            backgroundColor="#141414"
+            glowIntensity={1.0}
+            edgeSensitivity={30}
+          >
             <div className="space-y-1.5">
               <span className="text-xs font-mono uppercase text-white font-semibold">
                 CONVENTIONAL WORKFLOW
@@ -49,10 +60,18 @@ export function ProblemSolution() {
                 <span>Hours spent writing scripts to compute simple temporal difference polygons.</span>
               </li>
             </ul>
-          </div>
+          </BorderGlow>
 
           {/* SatQuery AI Agentic Paradigm */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-[#141414] border border-[#333333] space-y-6 shadow-card">
+          <BorderGlow
+            className="p-6 sm:p-8 rounded-2xl bg-[#141414] border border-[#333333] space-y-6 shadow-card"
+            borderRadius={16}
+            glowColor="0 0 100"
+            colors={["#ffffff", "#ffffff", "#ffffff"]}
+            backgroundColor="#141414"
+            glowIntensity={1.0}
+            edgeSensitivity={30}
+          >
             <div className="space-y-1.5">
               <span className="text-xs font-mono uppercase text-white font-semibold">
                 SATQUERY AI PARADIGM
@@ -80,7 +99,7 @@ export function ProblemSolution() {
                 <span>Instant hectarage quantification with observable execution traces and confidence metrics.</span>
               </li>
             </ul>
-          </div>
+          </BorderGlow>
         </div>
       </div>
     </section>

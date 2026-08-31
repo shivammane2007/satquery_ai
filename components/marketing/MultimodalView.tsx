@@ -5,6 +5,8 @@ import { SATELLITE_IMAGES } from "@/lib/satellite-assets";
 import { Radio, Cloud, Sparkles, ShieldCheck, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+import BorderGlow from "@/components/ui/BorderGlow";
+
 export function MultimodalView() {
   const [selectedModality, setSelectedModality] = useState<"optical" | "sar" | "fused">("fused");
 
@@ -27,14 +29,20 @@ export function MultimodalView() {
         {/* 3-Panel Visual Composition */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Panel 1: Optical */}
-          <div
+          <BorderGlow
             onClick={() => setSelectedModality("optical")}
             className={cn(
               "p-4 rounded-2xl border transition-all cursor-pointer space-y-3 shadow-card",
               selectedModality === "optical"
                 ? "bg-[#1c1c1c] border-white ring-1 ring-white/50"
-                : "bg-[#141414] border-[#333333] hover:border-[#444444] hover:bg-[#171717]"
+                : "bg-[#141414] border-[#333333]"
             )}
+            borderRadius={16}
+            glowColor="0 0 100"
+            colors={["#ffffff", "#ffffff", "#ffffff"]}
+            backgroundColor={selectedModality === "optical" ? "#1c1c1c" : "#141414"}
+            glowIntensity={1.0}
+            edgeSensitivity={30}
           >
             <div className="aspect-[4/3] rounded-xl overflow-hidden bg-black border border-[#2a2a2a] relative">
               <img
@@ -55,17 +63,23 @@ export function MultimodalView() {
                 Captures high-resolution spectral reflectances but suffers 88% obscuration during heavy cloud cover.
               </p>
             </div>
-          </div>
+          </BorderGlow>
 
           {/* Panel 2: SAR */}
-          <div
+          <BorderGlow
             onClick={() => setSelectedModality("sar")}
             className={cn(
               "p-4 rounded-2xl border transition-all cursor-pointer space-y-3 shadow-card",
               selectedModality === "sar"
                 ? "bg-[#1c1c1c] border-white ring-1 ring-white/50"
-                : "bg-[#141414] border-[#333333] hover:border-[#444444] hover:bg-[#171717]"
+                : "bg-[#141414] border-[#333333]"
             )}
+            borderRadius={16}
+            glowColor="0 0 100"
+            colors={["#ffffff", "#ffffff", "#ffffff"]}
+            backgroundColor={selectedModality === "sar" ? "#1c1c1c" : "#141414"}
+            glowIntensity={1.0}
+            edgeSensitivity={30}
           >
             <div className="aspect-[4/3] rounded-xl overflow-hidden bg-black border border-[#2a2a2a] relative">
               <img
@@ -86,17 +100,23 @@ export function MultimodalView() {
                 100% cloud-penetrating radar. Specular backscatter (-22.4 dB) identifies standing flood water and surface roughness.
               </p>
             </div>
-          </div>
+          </BorderGlow>
 
           {/* Panel 3: Fused */}
-          <div
+          <BorderGlow
             onClick={() => setSelectedModality("fused")}
             className={cn(
               "p-4 rounded-2xl border transition-all cursor-pointer space-y-3 shadow-card",
               selectedModality === "fused"
                 ? "bg-[#1c1c1c] border-white ring-1 ring-white/50"
-                : "bg-[#141414] border-[#333333] hover:border-[#444444] hover:bg-[#171717]"
+                : "bg-[#141414] border-[#333333]"
             )}
+            borderRadius={16}
+            glowColor="0 0 100"
+            colors={["#ffffff", "#ffffff", "#ffffff"]}
+            backgroundColor={selectedModality === "fused" ? "#1c1c1c" : "#141414"}
+            glowIntensity={1.0}
+            edgeSensitivity={30}
           >
             <div className="aspect-[4/3] rounded-xl overflow-hidden bg-black border border-[#2a2a2a] relative">
               <img
@@ -117,7 +137,7 @@ export function MultimodalView() {
                 Joint embedding aligns optical topography with calibrated SAR vectors, extracting a verified 410 ha flood inundation zone.
               </p>
             </div>
-          </div>
+          </BorderGlow>
         </div>
       </div>
     </section>

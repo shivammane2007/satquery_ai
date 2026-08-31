@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   MessageSquare,
@@ -9,6 +11,7 @@ import {
   Activity,
   ArrowUpRight,
 } from "lucide-react";
+import BorderGlow from "@/components/ui/BorderGlow";
 
 export function FeaturesGrid() {
   const features = [
@@ -98,9 +101,15 @@ export function FeaturesGrid() {
           {features.map((f) => {
             const Icon = f.icon;
             return (
-              <div
+              <BorderGlow
                 key={f.id}
-                className={`p-6 sm:p-7 rounded-2xl bg-[#141414] hover:bg-[#171717] border border-[#333333] hover:border-[#444444] shadow-card transition-all flex flex-col justify-between space-y-6 ${f.colSpan}`}
+                className={`p-6 sm:p-7 rounded-2xl bg-[#141414] border border-[#333333] shadow-card transition-all flex flex-col justify-between space-y-6 ${f.colSpan}`}
+                borderRadius={16}
+                glowColor="0 0 100"
+                colors={["#ffffff", "#ffffff", "#ffffff"]}
+                backgroundColor="#141414"
+                glowIntensity={1.0}
+                edgeSensitivity={30}
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -126,7 +135,7 @@ export function FeaturesGrid() {
                   <span>{f.metadata}</span>
                   <ArrowUpRight className="w-3.5 h-3.5 opacity-80 text-white" />
                 </div>
-              </div>
+              </BorderGlow>
             );
           })}
         </div>

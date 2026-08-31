@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import { ShieldCheck, Compass, Binary, Layers, CheckCircle2 } from "lucide-react";
+import BorderGlow from "@/components/ui/BorderGlow";
 
 export function TrustSection() {
   const trustPillars = [
@@ -46,9 +49,15 @@ export function TrustSection() {
           {trustPillars.map((p, idx) => {
             const Icon = p.icon;
             return (
-              <div
+              <BorderGlow
                 key={idx}
-                className="p-6 rounded-2xl bg-[#141414] hover:bg-[#171717] border border-[#333333] hover:border-[#444444] shadow-card transition-all space-y-4 flex flex-col justify-between"
+                className="p-6 rounded-2xl bg-[#141414] border border-[#333333] shadow-card transition-all space-y-4 flex flex-col justify-between"
+                borderRadius={16}
+                glowColor="0 0 100"
+                colors={["#ffffff", "#ffffff", "#ffffff"]}
+                backgroundColor="#141414"
+                glowIntensity={1.0}
+                edgeSensitivity={30}
               >
                 <div className="space-y-3">
                   <div className="w-8 h-8 rounded-xl bg-[#1c1c1c] border border-[#383838] flex items-center justify-center text-white">
@@ -61,7 +70,7 @@ export function TrustSection() {
                   <CheckCircle2 className="w-3 h-3 text-white" />
                   <span>Audited Remote-Sensing Standard</span>
                 </div>
-              </div>
+              </BorderGlow>
             );
           })}
         </div>

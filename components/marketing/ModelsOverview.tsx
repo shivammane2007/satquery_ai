@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { MODEL_STACK } from "@/lib/mock-data";
 import { Cpu, CheckCircle2, ArrowRight } from "lucide-react";
+import BorderGlow from "@/components/ui/BorderGlow";
 
 export function ModelsOverview() {
   return (
@@ -33,9 +36,15 @@ export function ModelsOverview() {
         {/* Model Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {MODEL_STACK.slice(0, 2).map((model) => (
-            <div
+            <BorderGlow
               key={model.id}
-              className="p-6 sm:p-8 rounded-2xl bg-[#141414] hover:bg-[#171717] border border-[#333333] hover:border-[#444444] shadow-card transition-all flex flex-col justify-between space-y-6"
+              className="p-6 sm:p-8 rounded-2xl bg-[#141414] border border-[#333333] shadow-card transition-all flex flex-col justify-between space-y-6"
+              borderRadius={16}
+              glowColor="0 0 100"
+              colors={["#ffffff", "#ffffff", "#ffffff"]}
+              backgroundColor="#141414"
+              glowIntensity={1.0}
+              edgeSensitivity={30}
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -71,7 +80,7 @@ export function ModelsOverview() {
                 <span>Modalities: {model.modalities.join(" • ")}</span>
                 <span>{model.resolutionSupport}</span>
               </div>
-            </div>
+            </BorderGlow>
           ))}
         </div>
       </div>
