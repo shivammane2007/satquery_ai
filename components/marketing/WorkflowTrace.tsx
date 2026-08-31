@@ -112,24 +112,24 @@ export function WorkflowTrace() {
                   key={step.id}
                   onClick={() => setActiveStep(step.id)}
                   className={cn(
-                    "p-3.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between gap-4 select-none",
+                    "p-3.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between gap-4 select-none shadow-card",
                     isActive
-                      ? "bg-[#171717] border-white text-white shadow-subtle"
-                      : "bg-[#0d0d0d] border-[#1f1f1f] text-[#888888] hover:text-white hover:bg-[#121212]"
+                      ? "bg-[#1f1f1f] border-white text-white ring-1 ring-white/50"
+                      : "bg-[#141414] border-[#333333] text-[#d4d4d4] hover:text-white hover:bg-[#1a1a1a] hover:border-[#444444]"
                   )}
                 >
                   <div className="flex items-center gap-3 min-w-0">
                     <div
                       className={cn(
-                        "w-7 h-7 rounded-lg flex items-center justify-center text-xs shrink-0 font-mono font-medium",
-                        isActive ? "bg-white text-black" : "bg-[#1c1c1c] text-[#737373]"
+                        "w-7 h-7 rounded-lg flex items-center justify-center text-xs shrink-0 font-mono font-bold",
+                        isActive ? "bg-white text-black" : "bg-[#242424] text-white"
                       )}
                     >
                       0{step.id + 1}
                     </div>
                     <div className="min-w-0">
-                      <p className="text-xs font-medium truncate">{step.title}</p>
-                      <p className="text-[10px] font-mono text-[#737373] truncate">
+                      <p className="text-xs font-medium text-white truncate">{step.title}</p>
+                      <p className="text-[10px] font-mono text-[#a3a3a3] truncate">
                         {step.category}
                       </p>
                     </div>
@@ -138,7 +138,7 @@ export function WorkflowTrace() {
                   <ChevronRight
                     className={cn(
                       "w-4 h-4 shrink-0 transition-transform",
-                      isActive ? "text-white translate-x-0.5" : "text-[#525252]"
+                      isActive ? "text-white translate-x-0.5" : "text-[#888888]"
                     )}
                   />
                 </div>
@@ -148,24 +148,24 @@ export function WorkflowTrace() {
 
           {/* Active Step Observable Inspector */}
           <div className="lg:col-span-6 sticky top-28">
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#0e0e0e] border border-[#2a2a2a] shadow-modal space-y-6">
-              <div className="flex items-center justify-between pb-4 border-b border-[#212121]">
+            <div className="p-6 sm:p-8 rounded-2xl bg-[#141414] border border-[#333333] shadow-card space-y-6">
+              <div className="flex items-center justify-between pb-4 border-b border-[#262626]">
                 <div className="space-y-1">
-                  <span className="text-[10px] font-mono uppercase text-[#737373] tracking-wider">
+                  <span className="text-[10px] font-mono uppercase text-white font-semibold tracking-wider">
                     STAGE 0{activeStep + 1} / 08
                   </span>
                   <h3 className="text-lg font-medium text-white">
                     {steps[activeStep].title}
                   </h3>
                 </div>
-                <div className="px-2.5 py-1 rounded-full bg-[#1c1c1c] border border-[#333333] text-[10px] font-mono text-white">
+                <div className="px-2.5 py-1 rounded-full bg-[#1c1c1c] border border-[#383838] text-[10px] font-mono text-white">
                   Deterministic
                 </div>
               </div>
 
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <span className="text-xs font-mono uppercase text-[#737373] block">
+                  <span className="text-xs font-mono uppercase text-white font-semibold block">
                     Execution Role
                   </span>
                   <p className="text-sm text-[#d4d4d4] leading-relaxed">
@@ -173,15 +173,15 @@ export function WorkflowTrace() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#050505] border border-[#212121] space-y-1.5 font-mono text-xs">
-                  <span className="text-[10px] uppercase text-[#737373] block">
+                <div className="p-4 rounded-xl bg-[#0c0c0c] border border-[#262626] space-y-1.5 font-mono text-xs">
+                  <span className="text-[10px] uppercase text-white/70 block font-semibold">
                     Live Telemetry & Output State
                   </span>
                   <p className="text-white font-medium">{steps[activeStep].detail}</p>
                 </div>
               </div>
 
-              <div className="pt-2 flex items-center justify-between text-[11px] text-[#525252] border-t border-[#1f1f1f]">
+              <div className="pt-2 flex items-center justify-between text-[11px] text-[#888888] border-t border-[#262626]">
                 <span>Observable remote-sensing pipeline</span>
                 <span>Zero Hallucination Guarantee</span>
               </div>

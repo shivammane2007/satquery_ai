@@ -100,14 +100,14 @@ export function FeaturesGrid() {
             return (
               <div
                 key={f.id}
-                className={`p-6 sm:p-7 rounded-2xl bg-[#0c0c0c] hover:bg-[#121212] border border-[#212121] hover:border-[#333333] transition-all flex flex-col justify-between space-y-6 ${f.colSpan}`}
+                className={`p-6 sm:p-7 rounded-2xl bg-[#141414] hover:bg-[#171717] border border-[#333333] hover:border-[#444444] shadow-card transition-all flex flex-col justify-between space-y-6 ${f.colSpan}`}
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <div className="p-2 rounded-xl bg-[#171717] border border-[#2e2e2e] text-white">
+                    <div className="p-2 rounded-xl bg-[#1c1c1c] border border-[#383838] text-white">
                       <Icon className="w-4 h-4" />
                     </div>
-                    <span className="text-[10px] font-mono uppercase text-[#737373] tracking-wider">
+                    <span className="text-[10px] font-mono uppercase text-white/80 tracking-wider font-medium">
                       {f.category}
                     </span>
                   </div>
@@ -116,15 +116,15 @@ export function FeaturesGrid() {
                     <h3 className="text-base sm:text-lg font-medium text-white">
                       {f.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-[#888888] leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#d4d4d4] leading-relaxed">
                       {f.description}
                     </p>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#1a1a1a] flex items-center justify-between text-[11px] font-mono text-[#525252]">
+                <div className="pt-4 border-t border-[#262626] flex items-center justify-between text-[11px] font-mono text-[#888888]">
                   <span>{f.metadata}</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
+                  <ArrowUpRight className="w-3.5 h-3.5 opacity-80 text-white" />
                 </div>
               </div>
             );

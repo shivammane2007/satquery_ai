@@ -168,44 +168,44 @@ export function ChangeShowcase() {
 
           {/* Right Metrics & Analytical Explanation */}
           <div className="lg:col-span-4 space-y-6">
-            <div className="p-6 rounded-2xl bg-[#0e0e0e] border border-[#262626] space-y-4">
-              <div className="space-y-1">
-                <span className="text-[10px] font-mono uppercase text-[#737373]">
+            <div className="p-6 rounded-2xl bg-[#141414] border border-[#333333] shadow-card space-y-4">
+              <div className="space-y-1.5">
+                <span className="text-[10px] font-mono uppercase text-white font-semibold tracking-wider">
                   SYNTHESIZED INSIGHT
                 </span>
                 <p className="text-sm text-white font-medium leading-relaxed">
-                  "Built-up area expanded across the northern portion of the AOI. 12.4 hectares of new industrial and logistics infrastructure detected."
+                  &ldquo;Built-up area expanded across the northern portion of the AOI. 12.4 hectares of new industrial and logistics infrastructure detected.&rdquo;
                 </p>
               </div>
 
-              <div className="h-[1px] bg-[#1f1f1f]" />
+              <div className="h-[1px] bg-[#262626]" />
 
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-[#888888]">Net Expansion</span>
+                  <span className="text-[#d4d4d4]">Net Expansion</span>
                   <span className="font-mono font-semibold text-white">12.4 ha</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-[#888888]">Baseline Shift</span>
+                  <span className="text-[#d4d4d4]">Baseline Shift</span>
                   <span className="font-mono text-white">+8.2% non-permeable</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-[#888888]">Coregistration RMSE</span>
+                  <span className="text-[#d4d4d4]">Coregistration RMSE</span>
                   <span className="font-mono text-white">&lt; 0.18 pixels</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-[#888888]">Confidence Score</span>
+                  <span className="text-[#d4d4d4]">Confidence Score</span>
                   <span className="font-mono text-white">87% (High)</span>
                 </div>
               </div>
             </div>
 
-            <div className="p-4 rounded-2xl bg-[#0a0a0a] border border-[#1f1f1f] text-xs text-[#737373] space-y-1.5">
-              <span className="font-mono text-[10px] uppercase text-[#525252] block">
+            <div className="p-5 rounded-2xl bg-[#141414] border border-[#333333] shadow-card text-xs space-y-1.5">
+              <span className="font-mono text-[10px] uppercase text-white font-semibold tracking-wider block">
                 SPECIALIST MODEL ROUTE
               </span>
-              <p className="text-[#a3a3a3]">
-                Processed via <strong>Change Detection Model</strong> + <strong>GeoChat</strong> spatial grounding for vector delineation.
+              <p className="text-[#d4d4d4] leading-relaxed">
+                Processed via <strong className="text-white">Change Detection Model</strong> + <strong className="text-white">GeoChat</strong> spatial grounding for vector delineation.
               </p>
             </div>
           </div>

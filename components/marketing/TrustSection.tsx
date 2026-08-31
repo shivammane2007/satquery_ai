@@ -48,17 +48,17 @@ export function TrustSection() {
             return (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-[#0c0c0c] border border-[#212121] space-y-4 flex flex-col justify-between"
+                className="p-6 rounded-2xl bg-[#141414] hover:bg-[#171717] border border-[#333333] hover:border-[#444444] shadow-card transition-all space-y-4 flex flex-col justify-between"
               >
                 <div className="space-y-3">
-                  <div className="w-8 h-8 rounded-xl bg-[#171717] border border-[#2e2e2e] flex items-center justify-center text-white">
+                  <div className="w-8 h-8 rounded-xl bg-[#1c1c1c] border border-[#383838] flex items-center justify-center text-white">
                     <Icon className="w-4 h-4" />
                   </div>
-                  <h3 className="text-sm font-medium text-white">{p.title}</h3>
-                  <p className="text-xs text-[#888888] leading-relaxed">{p.desc}</p>
+                  <h3 className="text-sm font-semibold text-white">{p.title}</h3>
+                  <p className="text-xs text-[#d4d4d4] leading-relaxed">{p.desc}</p>
                 </div>
-                <div className="pt-2 border-t border-[#171717] flex items-center gap-1.5 text-[10px] font-mono text-[#525252]">
-                  <CheckCircle2 className="w-3 h-3 text-[#737373]" />
+                <div className="pt-2 border-t border-[#262626] flex items-center gap-1.5 text-[10px] font-mono text-[#888888]">
+                  <CheckCircle2 className="w-3 h-3 text-white" />
                   <span>Audited Remote-Sensing Standard</span>
                 </div>
               </div>

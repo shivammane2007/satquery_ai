@@ -21,31 +21,31 @@ export function ProblemSolution() {
         {/* Comparison Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Traditional GIS Workflow */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-[#0c0c0c] border border-[#212121] space-y-6">
+          <div className="p-6 sm:p-8 rounded-2xl bg-[#141414] border border-[#333333] space-y-6 shadow-card">
             <div className="space-y-1.5">
-              <span className="text-xs font-mono uppercase text-[#737373]">
+              <span className="text-xs font-mono uppercase text-white font-semibold">
                 CONVENTIONAL WORKFLOW
               </span>
-              <h3 className="text-lg font-medium text-[#d4d4d4]">
+              <h3 className="text-lg font-medium text-white">
                 Fragmented GIS & Scripting
               </h3>
             </div>
 
-            <ul className="space-y-3.5 text-xs text-[#888888]">
+            <ul className="space-y-3.5 text-xs text-[#d4d4d4]">
               <li className="flex items-start gap-2.5">
-                <XCircle className="w-4 h-4 text-[#737373] shrink-0 mt-0.5" />
+                <XCircle className="w-4 h-4 text-white shrink-0 mt-0.5" />
                 <span>Manual scene searching across multiple STAC catalogs and cloud buckets.</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <XCircle className="w-4 h-4 text-[#737373] shrink-0 mt-0.5" />
+                <XCircle className="w-4 h-4 text-white shrink-0 mt-0.5" />
                 <span>Complex GDAL/rasterio commands required for simple reprojections and band math.</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <XCircle className="w-4 h-4 text-[#737373] shrink-0 mt-0.5" />
+                <XCircle className="w-4 h-4 text-white shrink-0 mt-0.5" />
                 <span>Separate specialist tools for radar (SNAP) and optical (QGIS) data processing.</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <XCircle className="w-4 h-4 text-[#737373] shrink-0 mt-0.5" />
+                <XCircle className="w-4 h-4 text-white shrink-0 mt-0.5" />
                 <span>Hours spent writing scripts to compute simple temporal difference polygons.</span>
               </li>
             </ul>

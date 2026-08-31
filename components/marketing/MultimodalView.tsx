@@ -30,28 +30,28 @@ export function MultimodalView() {
           <div
             onClick={() => setSelectedModality("optical")}
             className={cn(
-              "p-4 rounded-2xl border transition-all cursor-pointer space-y-3",
+              "p-4 rounded-2xl border transition-all cursor-pointer space-y-3 shadow-card",
               selectedModality === "optical"
-                ? "bg-[#141414] border-white shadow-card"
-                : "bg-[#0a0a0a] border-[#212121] hover:border-[#333333]"
+                ? "bg-[#1c1c1c] border-white ring-1 ring-white/50"
+                : "bg-[#141414] border-[#333333] hover:border-[#444444] hover:bg-[#171717]"
             )}
           >
-            <div className="aspect-[4/3] rounded-xl overflow-hidden bg-black border border-[#1f1f1f] relative">
+            <div className="aspect-[4/3] rounded-xl overflow-hidden bg-black border border-[#2a2a2a] relative">
               <img
                 src={SATELLITE_IMAGES.opticalCloudy}
                 alt="Optical multispectral"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-black/80 text-[10px] font-mono text-white">
+              <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-black/85 border border-white/20 text-[10px] font-mono text-white font-medium">
                 OPTICAL (S2)
               </div>
             </div>
-            <div className="space-y-1">
-              <div className="flex items-center gap-1.5 text-xs font-medium text-white">
-                <Cloud className="w-3.5 h-3.5 text-[#888888]" />
+            <div className="space-y-1.5 pt-1">
+              <div className="flex items-center gap-2 text-xs font-medium text-white">
+                <Cloud className="w-4 h-4 text-white shrink-0" />
                 <span>Multispectral Optical</span>
               </div>
-              <p className="text-[11px] text-[#737373] leading-relaxed">
+              <p className="text-xs text-[#d4d4d4] leading-relaxed">
                 Captures high-resolution spectral reflectances but suffers 88% obscuration during heavy cloud cover.
               </p>
             </div>
@@ -61,28 +61,28 @@ export function MultimodalView() {
           <div
             onClick={() => setSelectedModality("sar")}
             className={cn(
-              "p-4 rounded-2xl border transition-all cursor-pointer space-y-3",
+              "p-4 rounded-2xl border transition-all cursor-pointer space-y-3 shadow-card",
               selectedModality === "sar"
-                ? "bg-[#141414] border-white shadow-card"
-                : "bg-[#0a0a0a] border-[#212121] hover:border-[#333333]"
+                ? "bg-[#1c1c1c] border-white ring-1 ring-white/50"
+                : "bg-[#141414] border-[#333333] hover:border-[#444444] hover:bg-[#171717]"
             )}
           >
-            <div className="aspect-[4/3] rounded-xl overflow-hidden bg-black border border-[#1f1f1f] relative">
+            <div className="aspect-[4/3] rounded-xl overflow-hidden bg-black border border-[#2a2a2a] relative">
               <img
                 src={SATELLITE_IMAGES.sarRadar}
                 alt="SAR Synthetic Aperture Radar"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-black/80 text-[10px] font-mono text-white">
+              <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-black/85 border border-white/20 text-[10px] font-mono text-white font-medium">
                 SAR (SENTINEL-1)
               </div>
             </div>
-            <div className="space-y-1">
-              <div className="flex items-center gap-1.5 text-xs font-medium text-white">
-                <Radio className="w-3.5 h-3.5 text-[#888888]" />
+            <div className="space-y-1.5 pt-1">
+              <div className="flex items-center gap-2 text-xs font-medium text-white">
+                <Radio className="w-4 h-4 text-white shrink-0" />
                 <span>C-Band Radar Backscatter</span>
               </div>
-              <p className="text-[11px] text-[#737373] leading-relaxed">
+              <p className="text-xs text-[#d4d4d4] leading-relaxed">
                 100% cloud-penetrating radar. Specular backscatter (-22.4 dB) identifies standing flood water and surface roughness.
               </p>
             </div>
@@ -92,28 +92,28 @@ export function MultimodalView() {
           <div
             onClick={() => setSelectedModality("fused")}
             className={cn(
-              "p-4 rounded-2xl border transition-all cursor-pointer space-y-3",
+              "p-4 rounded-2xl border transition-all cursor-pointer space-y-3 shadow-card",
               selectedModality === "fused"
-                ? "bg-[#171717] border-white shadow-card"
-                : "bg-[#0c0c0c] border-[#262626] hover:border-[#383838]"
+                ? "bg-[#1c1c1c] border-white ring-1 ring-white/50"
+                : "bg-[#141414] border-[#333333] hover:border-[#444444] hover:bg-[#171717]"
             )}
           >
-            <div className="aspect-[4/3] rounded-xl overflow-hidden bg-black border border-[#1f1f1f] relative">
+            <div className="aspect-[4/3] rounded-xl overflow-hidden bg-black border border-[#2a2a2a] relative">
               <img
                 src={SATELLITE_IMAGES.fusedMultimodal}
                 alt="Fused multimodal understanding"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-black/80 text-[10px] font-mono text-white">
+              <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-black/85 border border-white/20 text-[10px] font-mono text-white font-medium">
                 FUSED INTELLIGENCE
               </div>
             </div>
-            <div className="space-y-1">
-              <div className="flex items-center gap-1.5 text-xs font-medium text-white">
-                <Sparkles className="w-3.5 h-3.5 text-white" />
+            <div className="space-y-1.5 pt-1">
+              <div className="flex items-center gap-2 text-xs font-medium text-white">
+                <Sparkles className="w-4 h-4 text-white shrink-0" />
                 <span>TerraMind Multimodal Fusion</span>
               </div>
-              <p className="text-[11px] text-[#a3a3a3] leading-relaxed">
+              <p className="text-xs text-[#d4d4d4] leading-relaxed">
                 Joint embedding aligns optical topography with calibrated SAR vectors, extracting a verified 410 ha flood inundation zone.
               </p>
             </div>
