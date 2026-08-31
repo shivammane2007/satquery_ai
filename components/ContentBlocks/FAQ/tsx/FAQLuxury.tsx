@@ -29,7 +29,7 @@ interface FAQLuxuryProps {
   hoverIconColor?: string;
 }
 
-const FAQLuxury: React.FC<FAQLuxuryProps> = ({
+export default function FAQLuxury({
   faqs = [
     {
       q: "How does SatQuery AI process multimodal satellite imagery?",
@@ -56,127 +56,95 @@ const FAQLuxury: React.FC<FAQLuxuryProps> = ({
       a: "Every response includes an expandable 'How was this analyzed?' drawer displaying active sensor pipelines, model routing weights, radiometric calibration stages, processing latencies in milliseconds, and calibrated confidence intervals."
     }
   ],
-  backgroundColor = "#000000",
-  blob1FromColor = "#262626",
-  blob1ViaColor = "#141414",
-  blob2FromColor = "#1f1f1f",
-  blob2ViaColor = "#0a0a0a",
   title = "Inquiries",
   subtitle = "Earth observation intelligence & foundation model architecture.",
-  titleColor = "#ffffff",
-  subtitleColor = "rgba(255,255,255,0.5)",
-  borderColor = "rgba(255,255,255,0.15)",
-  questionTextColor = "rgba(255,255,255,0.45)",
-  activeQuestionTextColor = "#ffffff",
-  hoverQuestionTextColor = "#ffffff",
-  answerTextColor = "rgba(255,255,255,0.75)",
-  iconColor = "rgba(255,255,255,0.3)",
-  hoverIconColor = "#ffffff",
-}) => {
+}: FAQLuxuryProps) {
   const [active, setActive] = useState<number | null>(0);
 
   return (
     <div
-      className="w-full min-h-[70vh] flex items-center justify-center relative overflow-hidden py-24 select-none border-t border-[#1f1f1f]"
-      style={{ backgroundColor, color: titleColor }}
+      className="w-full min-h-[70vh] flex items-center justify-center relative overflow-hidden py-24 select-none border-t border-[#ded9ce] dark:border-[#1f1f1f] bg-[#f7f6f2] dark:bg-black text-[#18181b] dark:text-white transition-colors"
     >
-      {/* Subtle Background Animated Blobs */}
-      <div className="absolute inset-0 opacity-40 pointer-events-none">
+      {/* Subtle Background Animated Blobs (Only in Dark Mode) */}
+      <div className="absolute inset-0 opacity-0 dark:opacity-40 pointer-events-none transition-opacity">
         <motion.div
           animate={{ scale: [1, 1.15, 1], rotate: [0, 90, 0] }}
           transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-          className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full blur-[120px]"
-          style={{
-            background: `linear-gradient(to bottom left, ${blob1FromColor}, ${blob1ViaColor}, transparent)`,
-          }}
+          className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full blur-[120px] bg-gradient-to-bl from-[#262626] via-[#141414] to-transparent"
         />
         <motion.div
           animate={{ scale: [1, 1.25, 1], rotate: [0, -90, 0] }}
           transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full blur-[140px]"
-          style={{
-            background: `linear-gradient(to top right, ${blob2FromColor}, ${blob2ViaColor}, transparent)`,
-          }}
+          className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full blur-[140px] bg-gradient-to-tr from-[#1f1f1f] via-[#0a0a0a] to-transparent"
         />
       </div>
 
       <div className="w-full max-w-4xl z-10 px-4 sm:px-6">
-        <div
-          className="mb-14 pl-6"
-          style={{ borderColor: borderColor, borderLeftWidth: "2px" }}
-        >
-          <h2 className="text-4xl sm:text-5xl font-light tracking-tight mb-2 text-white">
+        <div className="mb-14 pl-6 border-l-2 border-[#18181b]/40 dark:border-white/20">
+          <h2 className="text-4xl sm:text-5xl font-light tracking-tight mb-2 text-[#18181b] dark:text-white font-serif">
             {title}
           </h2>
-          <p
-            className="tracking-wider uppercase text-xs font-mono"
-            style={{ color: subtitleColor }}
-          >
+          <p className="tracking-wider uppercase text-xs font-mono text-[#71717a] dark:text-[#888888]">
             {subtitle}
           </p>
         </div>
 
         <div className="space-y-0">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              style={{
-                borderColor: borderColor,
-                borderTopWidth: "1px",
-                ...(i === faqs.length - 1 ? { borderBottomWidth: "1px" } : {}),
-              }}
-            >
-              <button
-                onClick={() => setActive(active === i ? null : i)}
-                className="w-full py-6 sm:py-8 text-left flex justify-between items-center group transition-colors"
+          {faqs.map((faq, i) => {
+            const isOpen = active === i;
+            return (
+              <div
+                key={i}
+                className={`border-t border-[#ded9ce] dark:border-white/10 ${
+                  i === faqs.length - 1 ? "border-b border-[#ded9ce] dark:border-white/10" : ""
+                }`}
               >
-                <span
-                  className="text-lg sm:text-2xl font-light transition-colors duration-300 pr-4"
-                  style={{
-                    color:
-                      active === i
-                        ? activeQuestionTextColor
-                        : questionTextColor,
-                  }}
+                <button
+                  onClick={() => setActive(isOpen ? null : i)}
+                  className="w-full py-6 sm:py-8 text-left flex justify-between items-center group transition-colors"
                 >
-                  {faq.q}
-                </span>
-                <motion.span
-                  animate={{ rotate: active === i ? 90 : 0 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="shrink-0 transition-colors"
-                  style={{
-                    color: active === i ? hoverIconColor : iconColor,
-                  }}
-                >
-                  <ArrowRight size={22} />
-                </motion.span>
-              </button>
-
-              <AnimatePresence>
-                {active === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.35, ease: "easeInOut" }}
-                    className="overflow-hidden"
+                  <span
+                    className={`text-lg sm:text-2xl font-light transition-colors duration-300 pr-4 ${
+                      isOpen
+                        ? "text-[#18181b] dark:text-white font-normal"
+                        : "text-[#52525b] dark:text-[#a3a3a3] group-hover:text-[#18181b] dark:group-hover:text-white"
+                    }`}
                   >
-                    <div
-                      className="pb-8 pr-6 sm:pr-12 text-sm sm:text-base font-light leading-relaxed max-w-3xl"
-                      style={{ color: answerTextColor }}
+                    {faq.q}
+                  </span>
+                  <motion.span
+                    animate={{ rotate: isOpen ? 90 : 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className={`shrink-0 transition-colors ${
+                      isOpen
+                        ? "text-[#18181b] dark:text-white"
+                        : "text-[#71717a] dark:text-[#737373] group-hover:text-[#18181b] dark:group-hover:text-white"
+                    }`}
+                  >
+                    <ArrowRight size={22} />
+                  </motion.span>
+                </button>
+
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: "easeInOut" }}
+                      className="overflow-hidden"
                     >
-                      {faq.a}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
+                      <div className="pb-8 pr-6 sm:pr-12 text-sm sm:text-base font-light leading-relaxed max-w-3xl text-[#3f3f46] dark:text-[#d4d4d4]">
+                        {faq.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
   );
-};
-
-export default FAQLuxury;
+}

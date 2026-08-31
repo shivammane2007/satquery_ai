@@ -116,32 +116,32 @@ export function Footer() {
             {/* Top Brand Info */}
             <div className="relative z-10 space-y-3">
               <Link href="/" className="flex items-center gap-2.5 group">
-                <div className="w-6 h-6 rounded-lg border border-[#444444] bg-[#141414] flex items-center justify-center group-hover:border-white transition-colors">
-                  <div className="w-2.5 h-2.5 rounded-full bg-white" />
+                <div className="w-6 h-6 rounded-lg border border-[#ded9ce] dark:border-[#444444] bg-[#f7f6f2] dark:bg-[#141414] flex items-center justify-center group-hover:border-[#18181b] dark:group-hover:border-white transition-colors">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#18181b] dark:bg-white" />
                 </div>
-                <span className="font-semibold text-sm tracking-wider uppercase font-mono text-white">
+                <span className="font-semibold text-sm tracking-wider uppercase font-mono text-[#18181b] dark:text-white">
                   SATQUERY AI
                 </span>
               </Link>
-              <p className="text-xs text-[#737373] leading-relaxed max-w-xs font-mono">
+              <p className="text-xs text-[#52525b] dark:text-[#737373] leading-relaxed max-w-xs font-mono">
                 Agentic Earth observation assistant. Deterministic VQA, temporal change detection, and optical-SAR fusion.
               </p>
             </div>
 
             {/* Middle & Bottom Content */}
             <div className="relative z-10 space-y-4 pt-6">
-              <h3 className="text-sm sm:text-base font-medium text-white leading-snug">
+              <h3 className="text-sm sm:text-base font-medium text-[#18181b] dark:text-white leading-snug">
                 {FOOTER_TITLE}
               </h3>
 
-              <SocialCloud className="text-white/80 gap-2.5" />
+              <SocialCloud className="text-[#18181b] dark:text-white/80 gap-2.5" />
 
-              <div className="space-y-1 pt-3 border-t border-[#1f1f1f] text-[11px] font-mono text-[#737373]">
+              <div className="space-y-1 pt-3 border-t border-[#ded9ce] dark:border-[#1f1f1f] text-[11px] font-mono text-[#71717a] dark:text-[#737373]">
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80" />
                   <span>Copernicus STAC Pipelines Operational</span>
                 </div>
-                <p className="text-[10px] text-[#525252]">
+                <p className="text-[10px] text-[#71717a] dark:text-[#525252]">
                   &copy; {new Date().getFullYear()} SatQuery AI. All rights reserved.
                 </p>
               </div>
@@ -150,17 +150,17 @@ export function Footer() {
 
           {/* Right Navigation & Research Digest Card */}
           <motion.div
-            className="w-full lg:w-2/3 rounded-2xl bg-[#090909] border border-[#262626] p-6 sm:p-8 flex flex-col justify-between space-y-6"
+            className="w-full lg:w-2/3 rounded-2xl bg-[#ffffff] dark:bg-[#090909] border border-[#ded9ce] dark:border-[#262626] p-6 sm:p-8 flex flex-col justify-between space-y-6 shadow-card"
             variants={itemVariants}
           >
             {/* Top Categories Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
               {footerLinks.map((section, idx) => (
                 <div key={idx} className="flex flex-col space-y-3">
-                  <h4 className="text-xs font-mono uppercase tracking-wider text-[#737373] font-semibold">
+                  <h4 className="text-xs font-mono uppercase tracking-wider text-[#71717a] dark:text-[#737373] font-semibold">
                     {section.title}
                   </h4>
-                  <ul className="flex flex-col space-y-2 text-xs text-[#a3a3a3]">
+                  <ul className="flex flex-col space-y-2 text-xs text-[#52525b] dark:text-[#a3a3a3]">
                     {section.links.map((link, linkIdx) => (
                       <li key={linkIdx}>
                         {link.href.startsWith("http") ? (
@@ -168,14 +168,14 @@ export function Footer() {
                             href={link.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-white transition-colors"
+                            className="text-[#52525b] dark:text-[#a3a3a3] hover:text-[#18181b] dark:hover:text-white transition-colors font-medium"
                           >
                             {link.label}
                           </a>
                         ) : (
                           <Link
                             href={link.href}
-                            className="hover:text-white transition-colors"
+                            className="text-[#52525b] dark:text-[#a3a3a3] hover:text-[#18181b] dark:hover:text-white transition-colors font-medium"
                           >
                             {link.label}
                           </Link>
@@ -188,19 +188,19 @@ export function Footer() {
             </div>
 
             {/* Bottom Research Digest / Newsletter */}
-            <div className="space-y-2.5 pt-5 border-t border-[#1a1a1a]">
+            <div className="space-y-2.5 pt-5 border-t border-[#ded9ce] dark:border-[#1a1a1a]">
               <div className="space-y-0.5">
-                <h4 className="text-xs font-mono uppercase tracking-wider text-white font-semibold">
+                <h4 className="text-xs font-mono uppercase tracking-wider text-[#18181b] dark:text-white font-semibold">
                   Earth Observation Research Digest
                 </h4>
-                <p className="text-[11px] text-[#737373]">
+                <p className="text-[11px] text-[#52525b] dark:text-[#737373]">
                   Receive updates on new remote-sensing model checkpoints, STAC catalog integrations, and release notes.
                 </p>
               </div>
 
               {subscribed ? (
-                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-[#141414] border border-[#2a2a2a] text-xs text-white">
-                  <Check className="w-4 h-4 text-white" />
+                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-[#edeae3] dark:bg-[#141414] border border-[#ded9ce] dark:border-[#2a2a2a] text-xs text-[#18181b] dark:text-white">
+                  <Check className="w-4 h-4 text-emerald-600 dark:text-white" />
                   <span>Subscribed to SatQuery research updates.</span>
                 </div>
               ) : (
@@ -211,19 +211,19 @@ export function Footer() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="analyst@geospatial-lab.org"
-                    className="flex-1 rounded-xl px-3.5 py-2 text-xs bg-[#121212] text-white border border-[#262626] focus:border-[#4d4d4d] focus:outline-none transition-colors placeholder-[#525252]"
+                    className="flex-1 rounded-xl px-3.5 py-2 text-xs bg-[#f7f6f2] dark:bg-[#121212] text-[#18181b] dark:text-white border border-[#ded9ce] dark:border-[#262626] focus:border-[#18181b] dark:focus:border-[#4d4d4d] focus:outline-none transition-colors placeholder-[#71717a] dark:placeholder-[#525252]"
                   />
                   <button
                     type="submit"
-                    className="rounded-xl bg-white hover:bg-[#e5e5e5] text-black px-4 py-2 text-xs font-semibold tracking-wide transition-all shadow-subtle flex items-center justify-center gap-1.5 shrink-0"
+                    className="rounded-xl bg-[#18181b] dark:bg-white text-white dark:text-black hover:bg-[#27272a] dark:hover:bg-[#e5e5e5] px-4 py-2 text-xs font-semibold tracking-wide transition-all shadow-subtle flex items-center justify-center gap-1.5 shrink-0"
                   >
-                    <span>Subscribe</span>
-                    <ArrowRight className="w-3 h-3" />
+                    <span className="!text-white dark:!text-black">Subscribe</span>
+                    <ArrowRight className="w-3 h-3 !text-white dark:!text-black" />
                   </button>
                 </form>
               )}
 
-              <div className="flex items-center justify-between text-[10px] text-[#525252] font-mono pt-0.5">
+              <div className="flex items-center justify-between text-[10px] text-[#71717a] dark:text-[#525252] font-mono pt-0.5">
                 <span>WGS84 • UTM EPSG:32643</span>
                 <span>Deterministic Geospatial Engine</span>
               </div>

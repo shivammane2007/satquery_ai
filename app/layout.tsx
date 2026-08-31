@@ -34,6 +34,7 @@ export const metadata: Metadata = {
 };
 
 import { ChatProvider } from "@/components/providers/ChatContext";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 export default function RootLayout({
   children,
@@ -41,9 +42,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`dark ${prata.variable} ${hankenGrotesk.variable}`}>
-      <body className="bg-black text-white antialiased selection:bg-[#333333] selection:text-white font-sans">
-        <ChatProvider>{children}</ChatProvider>
+    <html lang="en" className={`dark ${prata.variable} ${hankenGrotesk.variable}`} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const stored = localStorage.getItem('satquery_theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (stored === 'light' || (!stored && !prefersDark)) {
+                  document.documentElement.classList.remove('dark');
+                  document.documentElement.classList.add('light');
+                  document.documentElement.style.colorScheme = 'light';
+                } else {
+                  document.documentElement.classList.add('dark');
+                  document.documentElement.classList.remove('light');
+                  document.documentElement.style.colorScheme = 'dark';
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
+      <body className="bg-black text-white antialiased selection:bg-[#333333] selection:text-white font-sans transition-colors duration-300">
+        <ThemeProvider>
+          <ChatProvider>{children}</ChatProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

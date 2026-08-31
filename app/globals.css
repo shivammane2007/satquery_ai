@@ -45,23 +45,20 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Custom Sleek Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+/* Completely Hide Scrollbar Globally across all browsers while keeping smooth scroll active */
+* {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #262626;
-  border-radius: 9999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #404040;
+::-webkit-scrollbar,
+*::-webkit-scrollbar,
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+  background: transparent !important;
 }
 
 /* Selection */
@@ -128,3 +125,575 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ==========================================================================
+   Milky Light Theme System (Warm Ivory & Clean Elevated Surfaces)
+   Strictly isolated: Does not touch Hero section or Dark mode.
+   ========================================================================== */
+
+html.light {
+  color-scheme: light;
+  background-color: #f7f6f2 !important;
+  color: #18181b !important;
+}
+
+html.light body {
+  background-color: #f7f6f2 !important;
+  color: #18181b !important;
+}
+
+html.light ::selection {
+  background: #ded9ce;
+  color: #18181b;
+}
+
+/* Landing background in light mode */
+html.light .bg-black:not(#hero *):not(#hero):not(#navbar *):not(#navbar) {
+  background-color: #f7f6f2 !important;
+}
+
+/* Sections (except Hero) */
+html.light main section:not(#hero) {
+  background-color: #f7f6f2 !important;
+  border-top-color: #ded9ce !important;
+}
+
+/* Milky Elevated Cards */
+html.light .bg-\[\#141414\]:not(#hero *):not(#navbar *),
+html.light .bg-\[\#0c0c0c\]:not(#hero *):not(#navbar *),
+html.light .bg-\[\#0a0a0a\]:not(#hero *):not(#navbar *),
+html.light .bg-\[\#0e0e0e\]:not(#hero *):not(#navbar *),
+html.light .bg-\[\#121212\]:not(#hero *):not(#navbar *),
+html.light .bg-\[\#171717\]:not(#hero *):not(#navbar *) {
+  background-color: #ffffff !important;
+  border-color: #ded9ce !important;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px !important;
+}
+
+html.light .bg-\[\#141414\]:hover:not(#hero *):not(#navbar *),
+html.light .bg-\[\#0c0c0c\]:hover:not(#hero *):not(#navbar *),
+html.light .bg-\[\#121212\]:hover:not(#hero *):not(#navbar *),
+html.light .bg-\[\#171717\]:hover:not(#hero *):not(#navbar *) {
+  background-color: #fcfbfa !important;
+  border-color: #cfc9be !important;
+}
+
+/* Inner telemetry / sample code boxes */
+html.light .bg-\[\#080808\]:not(#hero *):not(#navbar *),
+html.light .bg-\[\#050505\]:not(#hero *):not(#navbar *) {
+  background-color: #f2efe9 !important;
+  border-color: #ded9ce !important;
+}
+
+/* Badges / Pill Tags */
+html.light .bg-\[\#1c1c1c\]:not(#hero *):not(#navbar *),
+html.light .bg-\[\#242424\]:not(#hero *):not(#navbar *) {
+  background-color: #edeae3 !important;
+  border-color: #ded9ce !important;
+  color: #18181b !important;
+}
+
+/* Borders */
+html.light .border-\[\#1f1f1f\]:not(#hero *):not(#navbar *),
+html.light .border-\[\#212121\]:not(#hero *):not(#navbar *),
+html.light .border-\[\#262626\]:not(#hero *):not(#navbar *),
+html.light .border-\[\#2e2e2e\]:not(#hero *):not(#navbar *),
+html.light .border-\[\#333333\]:not(#hero *):not(#navbar *),
+html.light .border-\[\#383838\]:not(#hero *):not(#navbar *),
+html.light .border-\[\#444444\]:not(#hero *):not(#navbar *) {
+  border-color: #ded9ce !important;
+}
+
+/* Typography in light mode */
+html.light h1:not(#hero *):not(#navbar *),
+html.light h2:not(#hero *):not(#navbar *),
+html.light h3:not(#hero *):not(#navbar *),
+html.light h4:not(#hero *):not(#navbar *),
+html.light .text-white:not(#hero *):not(#navbar *):not(button.bg-white *):not(.bg-white *):not(a.bg-white *) {
+  color: #18181b !important;
+}
+
+html.light .text-\[\#d4d4d4\]:not(#hero *):not(#navbar *),
+html.light .text-\[\#a3a3a3\]:not(#hero *):not(#navbar *) {
+  color: #4b4b54 !important;
+}
+
+html.light .text-\[\#888888\]:not(#hero *):not(#navbar *),
+html.light .text-\[\#737373\]:not(#hero *):not(#navbar *),
+html.light .text-\[\#525252\]:not(#hero *):not(#navbar *) {
+  color: #6a6a75 !important;
+}
+
+html.light .text-white\/80:not(#hero *):not(#navbar *) {
+  color: #3f3f46 !important;
+}
+
+/* Segmented View Mode Toggle & Pill Switchers in light mode */
+html.light .inline-flex.rounded-xl.bg-\[\#121212\] {
+  background-color: #edeae3 !important;
+  border-color: #ded9ce !important;
+}
+
+html.light .inline-flex.rounded-xl.bg-\[\#121212\] button {
+  color: #6a6a75 !important;
+}
+
+html.light .inline-flex.rounded-xl.bg-\[\#121212\] button:hover {
+  color: #18181b !important;
+}
+
+html.light .inline-flex.rounded-xl.bg-\[\#121212\] button.bg-\[\#262626\] {
+  background-color: #ffffff !important;
+  color: #18181b !important;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 6px !important;
+  font-weight: 600 !important;
+}
+
+/* Scenario switchers in light mode */
+html.light button.bg-\[\#212121\] {
+  background-color: #edeae3 !important;
+  color: #18181b !important;
+}
+
+/* Action Buttons in light mode (outside hero and navbar) */
+html.light a.bg-white:not(#hero *):not(#navbar *),
+html.light button.bg-white:not(#hero *):not(#navbar *) {
+  background-color: #18181b !important;
+  color: #ffffff !important;
+}
+html.light a.bg-white:hover:not(#hero *):not(#navbar *),
+html.light button.bg-white:hover:not(#hero *):not(#navbar *) {
+  background-color: #27272a !important;
+}
+
+/* Glass panels in light mode */
+html.light .glass-panel:not(#hero *):not(#navbar *) {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: #ded9ce !important;
+}
+
+html.light .glass-panel-subtle:not(#hero *):not(#navbar *) {
+  background: rgba(247, 246, 242, 0.8) !important;
+  border-color: #ded9ce !important;
+}
+
+/* Table styling in light mode */
+html.light table th {
+  background-color: #edeae3 !important;
+  color: #52525b !important;
+  border-color: #ded9ce !important;
+}
+html.light table tr {
+  border-color: #edeae3 !important;
+}
+html.light table tr:hover {
+  background-color: #f5f3ed !important;
+}
+
+/* WorkflowTrace active step in light mode */
+html.light .lg\:col-span-6 .bg-\[\#1f1f1f\] {
+  background-color: #edeae3 !important;
+  border-color: #18181b !important;
+  color: #18181b !important;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 8px !important;
+}
+
+html.light .lg\:col-span-6 .bg-\[\#1f1f1f\] p,
+html.light .lg\:col-span-6 .bg-\[\#1f1f1f\] span,
+html.light .lg\:col-span-6 .bg-\[\#1f1f1f\] svg {
+  color: #18181b !important;
+}
+
+html.light .lg\:col-span-6 .bg-\[\#1f1f1f\] .bg-white {
+  background-color: #18181b !important;
+  color: #ffffff !important;
+}
+
+/* Footer in light mode */
+html.light footer {
+  background-color: #f7f6f2 !important;
+  border-top-color: #ded9ce !important;
+}
+
+html.light footer .bg-\[\#0c0c0c\],
+html.light footer .bg-\[\#090909\] {
+  background-color: #ffffff !important;
+  border-color: #ded9ce !important;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px !important;
+}
+
+html.light footer a {
+  color: #52525b !important;
+}
+
+html.light footer a:hover {
+  color: #18181b !important;
+}
+
+html.light footer a.group:hover span {
+  color: #18181b !important;
+}
+
+html.light footer h3,
+html.light footer h4 {
+  color: #18181b !important;
+}
+
+html.light footer p {
+  color: #52525b !important;
+}
+
+html.light footer input {
+  background-color: #f7f6f2 !important;
+  border-color: #ded9ce !important;
+  color: #18181b !important;
+}
+
+html.light footer input::placeholder {
+  color: #71717a !important;
+}
+
+html.light footer button[type="submit"] {
+  background-color: #18181b !important;
+  color: #ffffff !important;
+}
+
+html.light footer button[type="submit"] span,
+html.light footer button[type="submit"] svg {
+  color: #ffffff !important;
+}
+
+html.light footer button[type="submit"]:hover {
+  background-color: #27272a !important;
+}
+
+/* App Workspace (/app) in light mode */
+html.light aside {
+  background-color: #f7f6f2 !important;
+  border-color: #ded9ce !important;
+}
+
+html.light aside div,
+html.light aside button,
+html.light aside a {
+  border-color: #ded9ce !important;
+}
+
+/* Active conversation item in sidebar */
+html.light aside .bg-\[\#212121\] {
+  background-color: #edeae3 !important;
+  color: #18181b !important;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 3px !important;
+}
+
+html.light aside .bg-\[\#212121\] span,
+html.light aside .bg-\[\#212121\] p,
+html.light aside .bg-\[\#212121\] svg {
+  color: #18181b !important;
+}
+
+/* Inactive conversation items in sidebar */
+html.light aside .text-\[\#a3a3a3\] {
+  color: #52525b !important;
+}
+
+html.light aside .hover\:bg-\[\#171717\]:hover,
+html.light aside .hover\:bg-\[\#1a1a1a\]:hover {
+  background-color: #edeae3 !important;
+  color: #18181b !important;
+}
+
+/* User avatar at the bottom of sidebar */
+html.light aside .w-8.h-8.rounded-full {
+  background-color: #edeae3 !important;
+  border-color: #ded9ce !important;
+  color: #18181b !important;
+}
+
+/* Sidebar category headers (TODAY, YESTERDAY, etc.) */
+html.light aside .text-\[\#525252\],
+html.light aside .text-\[\#737373\] {
+  color: #71717a !important;
+}
+
+/* New Analysis Button */
+html.light aside a.bg-white,
+html.light aside button.bg-white {
+  background-color: #ffffff !important;
+  border-color: #ded9ce !important;
+  color: #18181b !important;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 6px !important;
+}
+
+/* Search bar in sidebar */
+html.light aside input {
+  background-color: #ffffff !important;
+  border-color: #ded9ce !important;
+  color: #18181b !important;
+}
+
+html.light aside input::placeholder {
+  color: #71717a !important;
+}
+
+html.light header.bg-\[\#000000\]\/80 {
+  background-color: rgba(247, 246, 242, 0.85) !important;
+  border-color: #ded9ce !important;
+}
+
+html.light .bg-\[\#050505\] {
+  background-color: #f7f6f2 !important;
+}
+
+html.light .bg-\[\#000000\] {
+  background-color: #f7f6f2 !important;
+}
+
+/* Workspace starter prompt cards in light mode */
+html.light .grid.grid-cols-1.sm\:grid-cols-2 button {
+  background-color: #ffffff !important;
+  border-color: #ded9ce !important;
+  box-shadow: rgba(0, 0, 0, 0.03) 0px 2px 8px !important;
+}
+
+html.light .grid.grid-cols-1.sm\:grid-cols-2 button:hover {
+  background-color: #fcfbfa !important;
+  border-color: #cfc9be !important;
+}
+
+html.light .grid.grid-cols-1.sm\:grid-cols-2 button span.bg-\[\#1a1a1a\] {
+  background-color: #edeae3 !important;
+  color: #18181b !important;
+}
+
+/* Workspace Composer in light mode */
+html.light .max-w-3xl .bg-\[\#141414\] {
+  background-color: #ffffff !important;
+  border-color: #ded9ce !important;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 20px !important;
+}
+
+html.light .max-w-3xl textarea {
+  color: #18181b !important;
+}
+
+html.light .max-w-3xl textarea::placeholder {
+  color: #71717a !important;
+}
+
+/* Dropdown popovers & image source picker in light mode */
+html.light .shadow-modal,
+html.light .shadow-card {
+  background-color: #ffffff !important;
+  border-color: #ded9ce !important;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 24px !important;
+}
+
+html.light .absolute.bottom-full button,
+html.light .absolute.top-full button {
+  color: #18181b !important;
+}
+
+html.light .absolute.bottom-full button:hover,
+html.light .absolute.top-full button:hover {
+  background-color: #edeae3 !important;
+  color: #18181b !important;
+}
+
+html.light .absolute.bottom-full button p,
+html.light .absolute.top-full button p {
+  color: #18181b !important;
+}
+
+html.light .absolute.bottom-full button p.text-\[10px\],
+html.light .absolute.top-full button p.text-\[10px\] {
+  color: #52525b !important;
+}
+
+html.light .absolute.bottom-full svg,
+html.light .absolute.top-full svg {
+  color: #52525b !important;
+}
+
+/* Theme Toggle Dropdown Popover in light mode */
+html.light .theme-dropdown-menu {
+  background-color: #ffffff !important;
+  border-color: #ded9ce !important;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 8px 24px !important;
+}
+
+html.light .theme-dropdown-menu button {
+  color: #52525b !important;
+}
+
+html.light .theme-dropdown-menu button:hover {
+  background-color: #f7f6f2 !important;
+  color: #18181b !important;
+}
+
+html.light .theme-dropdown-menu button.bg-\[\#edeae3\] {
+  background-color: #edeae3 !important;
+  color: #18181b !important;
+}
+
+html.light .theme-dropdown-menu button.bg-\[\#edeae3\] span,
+html.light .theme-dropdown-menu button.bg-\[\#edeae3\] svg {
+  color: #18181b !important;
+}
+
+/* Modals in light mode */
+html.light .fixed.inset-0 .bg-\[\#121212\] {
+  background-color: #ffffff !important;
+  border-color: #ded9ce !important;
+  color: #18181b !important;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 8px 32px !important;
+}
+
+html.light .fixed.inset-0 .bg-\[\#171717\],
+html.light .fixed.inset-0 .bg-\[\#1a1a1a\] {
+  background-color: #edeae3 !important;
+  border-color: #ded9ce !important;
+}
+
+html.light .fixed.inset-0 .bg-\[\#0a0a0a\] {
+  background-color: #f7f6f2 !important;
+  border-color: #ded9ce !important;
+  color: #18181b !important;
+}
+
+/* ProductPreview Live Mockup in light mode */
+html.light #preview .bg-\[\#0d0d0d\] {
+  background-color: #ffffff !important;
+  border-color: #ded9ce !important;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 8px 32px !important;
+}
+
+html.light #preview .bg-\[\#0a0a0a\] {
+  background-color: #f7f6f2 !important;
+  border-color: #ded9ce !important;
+}
+
+html.light #preview .bg-\[\#0a0a0a\]\/80 {
+  background-color: rgba(247, 246, 242, 0.9) !important;
+  border-bottom-color: #ded9ce !important;
+}
+
+html.light #preview .bg-\[\#050505\] {
+  background-color: #fcfbfa !important;
+}
+
+/* ProductPreview Top Bar text & badge */
+html.light #preview .h-12 {
+  background-color: #f7f6f2 !important;
+  border-bottom-color: #ded9ce !important;
+}
+
+html.light #preview .h-12 span {
+  color: #18181b !important;
+}
+
+html.light #preview .h-12 span.bg-\[\#141414\] {
+  background-color: #edeae3 !important;
+  border-color: #ded9ce !important;
+  color: #18181b !important;
+}
+
+html.light #preview .h-12 a {
+  color: #52525b !important;
+}
+
+html.light #preview .h-12 a:hover {
+  color: #18181b !important;
+}
+
+/* ProductPreview Left mini sidebar */
+html.light #preview .w-64.bg-\[\#0a0a0a\] {
+  background-color: #ffffff !important;
+  border-right-color: #ded9ce !important;
+}
+
+html.light #preview .w-64 .bg-\[\#121212\] {
+  background-color: #f7f6f2 !important;
+  border-color: #ded9ce !important;
+}
+
+/* ProductPreview bottom simulated input */
+html.light #preview .p-4.border-t {
+  background-color: #ffffff !important;
+  border-top-color: #ded9ce !important;
+}
+
+html.light #preview .p-4.border-t .bg-\[\#141414\] {
+  background-color: #f7f6f2 !important;
+  border-color: #ded9ce !important;
+}
+
+html.light #preview .p-4.border-t input {
+  color: #71717a !important;
+}
+
+/* Chat Messages in light mode (User bubble & Assistant text) */
+html.light .bg-\[\#212121\].rounded-2xl {
+  background-color: #edeae3 !important;
+  border-color: #ded9ce !important;
+  color: #18181b !important;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 1px 4px !important;
+}
+
+html.light .bg-\[\#212121\].rounded-2xl p {
+  color: #18181b !important;
+}
+
+html.light .text-\[\#e5e5e5\] {
+  color: #18181b !important;
+}
+
+html.light .text-\[\#e5e5e5\] p {
+  color: #18181b !important;
+}
+
+/* Change Analysis Card & Artifacts in light mode */
+html.light .bg-\[\#0f0f0f\] {
+  background-color: #ffffff !important;
+  border-color: #ded9ce !important;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 16px !important;
+}
+
+html.light .bg-\[\#0f0f0f\] .text-white {
+  color: #18181b !important;
+}
+
+html.light .bg-\[\#0f0f0f\] .bg-\[\#141414\] {
+  background-color: #f7f6f2 !important;
+  border-color: #ded9ce !important;
+}
+
+html.light .bg-\[\#0f0f0f\] .bg-\[\#171717\] {
+  background-color: #edeae3 !important;
+  border-color: #ded9ce !important;
+  color: #18181b !important;
+}
+
+html.light .bg-\[\#0f0f0f\] .inline-flex.bg-\[\#141414\] button {
+  color: #52525b !important;
+}
+
+html.light .bg-\[\#0f0f0f\] .inline-flex.bg-\[\#141414\] button.bg-\[\#262626\] {
+  background-color: #ffffff !important;
+  color: #18181b !important;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 4px !important;
+  font-weight: 600 !important;
+}
+
+/* ==========================================================================
+   STRICT DARK THEME LOCK: Hero Section ALWAYS remains Dark Theme
+   ========================================================================== */
+
+#hero,
+#hero *,
+[data-theme="dark"],
+[data-theme="dark"] * {
+  color-scheme: dark !important;
+}
+
+

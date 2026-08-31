@@ -151,3 +151,45 @@
   width: 100%;
   height: 100%;
 }
+
+/* Light Theme Support for BorderGlow */
+html.light .border-glow-card {
+  border-color: #ded9ce;
+  background: #ffffff;
+  box-shadow:
+    rgba(0, 0, 0, 0.03) 0px 2px 6px,
+    rgba(0, 0, 0, 0.04) 0px 8px 24px;
+}
+
+html.light .border-glow-card::before {
+  background:
+    linear-gradient(#ffffff 0 100%) padding-box,
+    linear-gradient(rgb(0 0 0 / 0%) 0% 100%) border-box,
+    radial-gradient(at 80% 55%, rgba(160, 160, 160, 0.7) 0px, transparent 50%) border-box,
+    radial-gradient(at 69% 34%, rgba(160, 160, 160, 0.7) 0px, transparent 50%) border-box,
+    radial-gradient(at 8% 6%, rgba(160, 160, 160, 0.7) 0px, transparent 50%) border-box,
+    radial-gradient(at 41% 38%, rgba(160, 160, 160, 0.7) 0px, transparent 50%) border-box,
+    radial-gradient(at 86% 85%, rgba(160, 160, 160, 0.7) 0px, transparent 50%) border-box,
+    radial-gradient(at 82% 18%, rgba(160, 160, 160, 0.7) 0px, transparent 50%) border-box,
+    radial-gradient(at 51% 4%, rgba(160, 160, 160, 0.7) 0px, transparent 50%) border-box,
+    linear-gradient(#9ca3af 0 100%) border-box;
+}
+
+html.light .border-glow-card::after {
+  background:
+    radial-gradient(at 80% 55%, rgba(0, 0, 0, 0.04) 0px, transparent 50%) padding-box,
+    radial-gradient(at 69% 34%, rgba(0, 0, 0, 0.04) 0px, transparent 50%) padding-box,
+    radial-gradient(at 8% 6%, rgba(0, 0, 0, 0.04) 0px, transparent 50%) padding-box,
+    radial-gradient(at 41% 38%, rgba(0, 0, 0, 0.04) 0px, transparent 50%) padding-box,
+    radial-gradient(at 86% 85%, rgba(0, 0, 0, 0.04) 0px, transparent 50%) padding-box,
+    radial-gradient(at 82% 18%, rgba(0, 0, 0, 0.04) 0px, transparent 50%) padding-box,
+    radial-gradient(at 51% 4%, rgba(0, 0, 0, 0.04) 0px, transparent 50%) padding-box,
+    linear-gradient(#f4f2eb 0 100%) padding-box;
+}
+
+html.light .border-glow-card > .edge-light::before {
+  box-shadow:
+    inset 0 0 0 1px hsl(0deg 0% 70% / 80%),
+    0 0 12px 1px rgba(0, 0, 0, 0.08);
+}
+

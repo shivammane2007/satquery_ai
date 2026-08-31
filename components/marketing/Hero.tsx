@@ -119,7 +119,7 @@ export function Hero() {
   const activeData = MODES[currentMode];
 
   return (
-    <section className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#04101f] text-white select-none">
+    <section id="hero" data-theme="dark" className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#04101f] text-white select-none">
       {/* Dynamic Physics Style Block for Celestial Rotation */}
       <style jsx global>{`
         @keyframes planet-axial-prograde {

@@ -15,7 +15,7 @@ export function SocialCloud({ className }: SocialCloudProps) {
         href="https://x.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="p-2 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-white transition-colors flex items-center justify-center"
+        className="p-2 rounded-xl bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/15 border border-black/10 dark:border-white/10 text-[#18181b] dark:text-white transition-colors flex items-center justify-center"
         title="X (Twitter)"
       >
         <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -28,7 +28,7 @@ export function SocialCloud({ className }: SocialCloudProps) {
         href="https://github.com/shivammane2007/satquery_ai"
         target="_blank"
         rel="noopener noreferrer"
-        className="p-2 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-white transition-colors flex items-center justify-center"
+        className="p-2 rounded-xl bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/15 border border-black/10 dark:border-white/10 text-[#18181b] dark:text-white transition-colors flex items-center justify-center"
         title="GitHub"
       >
         <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -41,7 +41,7 @@ export function SocialCloud({ className }: SocialCloudProps) {
         href="https://linkedin.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="p-2 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-white transition-colors flex items-center justify-center"
+        className="p-2 rounded-xl bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/15 border border-black/10 dark:border-white/10 text-[#18181b] dark:text-white transition-colors flex items-center justify-center"
         title="LinkedIn"
       >
         <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -54,7 +54,7 @@ export function SocialCloud({ className }: SocialCloudProps) {
         href="https://discord.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="p-2 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-white transition-colors flex items-center justify-center"
+        className="p-2 rounded-xl bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/15 border border-black/10 dark:border-white/10 text-[#18181b] dark:text-white transition-colors flex items-center justify-center"
         title="Discord"
       >
         <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
