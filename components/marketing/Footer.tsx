@@ -208,6 +208,10 @@ export function Footer() {
                   <input
                     type="email"
                     required
+                    suppressHydrationWarning
+                    autoComplete="off"
+                    data-lpignore="true"
+                    data-form-type="other"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="analyst@geospatial-lab.org"
@@ -215,6 +219,7 @@ export function Footer() {
                   />
                   <button
                     type="submit"
+                    suppressHydrationWarning
                     className="rounded-xl bg-[#18181b] dark:bg-white text-white dark:text-black hover:bg-[#27272a] dark:hover:bg-[#e5e5e5] px-4 py-2 text-xs font-semibold tracking-wide transition-all shadow-subtle flex items-center justify-center gap-1.5 shrink-0"
                   >
                     <span className="!text-white dark:!text-black">Subscribe</span>

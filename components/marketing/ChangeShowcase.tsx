@@ -42,6 +42,8 @@ export function ChangeShowcase() {
           {/* View mode toggle buttons */}
           <div className="inline-flex p-1 rounded-xl bg-[#121212] border border-[#262626] text-xs self-start sm:self-auto">
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setActiveView("slider")}
               className={cn(
                 "px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors",
@@ -51,6 +53,8 @@ export function ChangeShowcase() {
               Interactive Slider
             </button>
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setActiveView("before")}
               className={cn(
                 "px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors",
@@ -60,6 +64,8 @@ export function ChangeShowcase() {
               Before (2024)
             </button>
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setActiveView("after")}
               className={cn(
                 "px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors",
@@ -69,6 +75,8 @@ export function ChangeShowcase() {
               After (2025)
             </button>
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setActiveView("mask")}
               className={cn(
                 "px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors",

@@ -80,6 +80,8 @@ export function ProductPreview() {
               {demoScenarios.slice(0, 3).map((conv, idx) => (
                 <button
                   key={conv.id}
+                  type="button"
+                  suppressHydrationWarning
                   onClick={() => setActiveChatIndex(idx)}
                   className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-colors text-left ${
                     activeChatIndex === idx
@@ -151,6 +153,7 @@ export function ProductPreview() {
               <div className="max-w-3xl mx-auto flex items-center gap-2 p-2 rounded-xl bg-[#141414] border border-[#2a2a2a]">
                 <button
                   type="button"
+                  suppressHydrationWarning
                   className="p-2 rounded-lg text-[#737373] hover:text-white"
                   title="Upload raster"
                 >
@@ -159,6 +162,7 @@ export function ProductPreview() {
                 <input
                   type="text"
                   readOnly
+                  suppressHydrationWarning
                   value="Ask a question about this satellite scene..."
                   className="flex-1 bg-transparent text-xs text-[#525252] focus:outline-none cursor-pointer"
                   onClick={() => {

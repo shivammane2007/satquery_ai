@@ -64,7 +64,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-black text-white antialiased selection:bg-[#333333] selection:text-white font-sans transition-colors duration-300">
+      <body
+        className="bg-black text-white antialiased selection:bg-[#333333] selection:text-white font-sans transition-colors duration-300"
+        suppressHydrationWarning
+      >
         <ThemeProvider>
           <ChatProvider>{children}</ChatProvider>
         </ThemeProvider>

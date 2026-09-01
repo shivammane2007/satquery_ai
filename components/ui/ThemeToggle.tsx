@@ -8,9 +8,11 @@ import { cn } from "@/lib/utils";
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, resolvedTheme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setMounted(true);
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setOpen(false);
@@ -26,19 +28,23 @@ export function ThemeToggle({ className }: { className?: string }) {
     { id: "light", label: "Light", icon: Sun },
   ];
 
+  const currentTheme = mounted ? theme : "system";
   const CurrentIcon =
-    theme === "system" ? Laptop : theme === "dark" ? Moon : Sun;
+    currentTheme === "system" ? Laptop : currentTheme === "dark" ? Moon : Sun;
 
   return (
     <div className={cn("relative inline-block text-left select-none", className)} ref={dropdownRef}>
       <button
         type="button"
+        suppressHydrationWarning
         onClick={() => setOpen((prev) => !prev)}
         aria-label="Select theme"
         className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-medium bg-white dark:bg-[#141414] hover:bg-[#edeae3] dark:hover:bg-[#1f1f1f] text-[#18181b] dark:text-[#d4d4d4] hover:text-[#18181b] dark:hover:text-white border border-[#ded9ce] dark:border-[#2e2e2e] transition-all shadow-subtle focus:outline-none"
       >
         <CurrentIcon className="w-3.5 h-3.5" />
-        <span className="capitalize hidden sm:inline">{theme}</span>
+        <span className="capitalize hidden sm:inline" suppressHydrationWarning>
+          {currentTheme}
+        </span>
         <ChevronDown className={cn("w-3 h-3 transition-transform text-[#71717a] dark:text-[#888888]", open && "rotate-180")} />
       </button>
 
@@ -47,11 +53,12 @@ export function ThemeToggle({ className }: { className?: string }) {
           <div className="space-y-0.5">
             {options.map((opt) => {
               const Icon = opt.icon;
-              const isSelected = theme === opt.id;
+              const isSelected = currentTheme === opt.id;
               return (
                 <button
                   key={opt.id}
                   type="button"
+                  suppressHydrationWarning
                   onClick={() => {
                     setTheme(opt.id);
                     setOpen(false);

@@ -57,6 +57,8 @@ export function ChangeAnalysisBlock({ data, onOpenViewer }: ChangeAnalysisBlockP
       <div className="flex items-center justify-between gap-2">
         <div className="inline-flex p-0.5 rounded-lg bg-[#141414] border border-[#212121] text-xs">
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={() => setActiveTab("slider")}
             className={cn(
               "px-3 py-1 rounded-md transition-colors text-[11px] font-medium",
@@ -66,6 +68,8 @@ export function ChangeAnalysisBlock({ data, onOpenViewer }: ChangeAnalysisBlockP
             Split Slider
           </button>
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={() => setActiveTab("before")}
             className={cn(
               "px-3 py-1 rounded-md transition-colors text-[11px] font-medium",
@@ -75,6 +79,8 @@ export function ChangeAnalysisBlock({ data, onOpenViewer }: ChangeAnalysisBlockP
             Before (2024)
           </button>
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={() => setActiveTab("after")}
             className={cn(
               "px-3 py-1 rounded-md transition-colors text-[11px] font-medium",
@@ -84,6 +90,8 @@ export function ChangeAnalysisBlock({ data, onOpenViewer }: ChangeAnalysisBlockP
             After (2025)
           </button>
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={() => setActiveTab("mask")}
             className={cn(
               "px-3 py-1 rounded-md transition-colors text-[11px] font-medium",

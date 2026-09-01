@@ -233,6 +233,7 @@ export function Hero() {
       {/* 4. Left Bottom Corner Planet Button */}
       <button
         type="button"
+        suppressHydrationWarning
         onClick={() => switchMode(leftId)}
         onPointerEnter={() => handleWarm(leftId)}
         onFocus={() => handleWarm(leftId)}
@@ -258,6 +259,7 @@ export function Hero() {
       {/* 5. Right Bottom Corner Planet Button */}
       <button
         type="button"
+        suppressHydrationWarning
         onClick={() => switchMode(rightId)}
         onPointerEnter={() => handleWarm(rightId)}
         onFocus={() => handleWarm(rightId)}
